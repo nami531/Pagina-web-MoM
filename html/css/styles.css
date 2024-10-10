@@ -107,148 +107,110 @@ button:hover {
 }
 
 /*Grid con varios productos*/
+* {
+  /*IMportante para el no desplazamiento de los productos al girar*/
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-auto-rows: 150px;
-    gap: 10px;
-    row-gap: 5%;
-    padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-gap: 20px;
+  padding: 20px;
+  grid-auto-rows: minmax(75px, auto); /* Ajustado para permitir mayor tamaño */
+  gap: 10px;
+  row-gap: 2%;
+  column-gap: 2%;
+  padding: 10px;
+}
+
+.grid-item {
+  perspective: 1000px; /* Needed for 3D flip effect */
+}
+
+.normal {
+  grid-column: span 2;
 }
 
 .featured {
+  grid-column: span 4;
+  grid-row: span 4;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  position: relative; /* Ensure the flip card stays in place */
+  perspective: 1000px;
+  aspect-ratio: 1; /* Mantén la tarjeta cuadrada */
+  border-radius: 28px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); /* Sombra */
+  transition: box-shadow 0.4s ease-in-out; /* Transición suave */
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  transform-origin: center; /* Ensure the rotation happens from the center */
+  transform: translateZ(0); /* Evita desplazamientos 3D no deseados */
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg); /* Flip horizontally */
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden; /* Hide the back face when not visible */
+  border-radius: 28px;
+}
+
+.flip-card-front {
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+}
+
+.flip-card-back {
+  background-color: #333;
+  color: white;
+  transform: rotateY(180deg); /* Flip the back face */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+h2, p {
+  margin: 10px 0;
+}
+
+/*Para que sea responsive*/
+@media (max-width: 600px) {
+  .grid-item.featured {
     grid-column: span 2;
     grid-row: span 2;
-    background-color: #ffcc00;
-    text-align: center;
-    padding: 10px;
-    font-size: 1.5em;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+  }
 }
-
-.featured img {
-    width: 100%; 
-    max-height: 200px;
-    height: auto; 
-    object-fit: cover; /* Mantiene la relación de aspecto y cubre el contenedor */
-}
-
-.product img {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; /* Mantiene la relación de aspecto y cubre el contenedor */
-}
-
-.product {
-    background-color: #f1f1f1;
-    text-align: center;
-    padding: 20px;
-    border: 1px solid #ccc;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-}
-
-#prod1 {
-    background-image: url(../media/img/boli3.png);  
-}
-
-
-/*Efecto flip card*/
-.myCard {
-    background-color: transparent;
-    width: 190px;
-    height: 254px;
-    perspective: 1000px;
-  }
-  
-  .title {
-    font-size: 1.5em;
-    font-weight: 900;
-    text-align: center;
-    margin: 0;
-  }
-  
-  .innerCard {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-    cursor: pointer;
-  }
-  
-  .myCard:hover .innerCard {
-    transform: rotateY(180deg);
-  }
-  
-  .frontSide,
-  .backSide {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 1rem;
-    color: white;
-    box-shadow: 0 0 0.3em rgba(255, 255, 255, 0.5);
-    font-weight: 700;
-  }
-  
-  .frontSide,
-  .frontSide::before {
-    background: rgb(65, 88, 208);
-  }
-  
-  .backSide,
-  .backSide::before {
-    background: #80D0C7;
-  }
-  
-  .backSide {
-    transform: rotateY(180deg);
-  }
-  
-  .frontSide::before,
-  .backSide::before {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    content: '';
-    width: 110%;
-    height: 110%;
-    position: absolute;
-    z-index: -1;
-    border-radius: 1em;
-    filter: blur(20px);
-    animation: animate 5s linear infinite;
-  }
-  
-  @keyframes animate {
-    0% {
-      opacity: 0.3;
-    }
-  
-    80% {
-      opacity: 1;
-    }
-  
-    100% {
-      opacity: 0.3;
-    }
-  }

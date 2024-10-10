@@ -1,0 +1,96 @@
+button {
+    transform: perspective(1px) translateZ(0);
+    transition-duration: 0.5s;
+}
+
+button:hover {
+    transform: scale(0.8);
+    transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #000;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loaderDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    z-index: 9999;
+}
+
+/*Función para el slide in del menú*/
+.menu-container {
+    position: relative;
+}
+
+#menu-toggle {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.menu {
+    position: absolute;
+    top: -25vh;
+    /* Ocultar el menú fuera de la pantalla */
+    background-color: #444;
+    height: 10vh;
+    width: 100vh;
+    transition: top 0.3s ease; /* Transición suave */
+    z-index: 1;
+}
+
+.menu.active {
+    top: 0;
+    /* Mostrar el menú */
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    /* Disposición en línea horizontal */
+    justify-content: space-around;
+    /* Espaciado entre elementos */
+}
+
+.menu li {
+    border-bottom: 1px solid #555;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 15px;
+}
+
+.menu a:hover {
+    background-color: #555;
+}

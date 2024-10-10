@@ -1,3 +1,10 @@
+/*Elementos básicos del css*/
+section{
+    margin-bottom: 100px;
+}
+
+
+/*Botón con animación*/
 button {
     transform: perspective(1px) translateZ(0);
     transition-duration: 0.5s;
@@ -8,6 +15,7 @@ button:hover {
     transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
 }
 
+/*Loader*/
 .loader {
     width: 48px;
     height: 48px;
@@ -43,12 +51,14 @@ button:hover {
 }
 
 /*Función para el slide in del menú*/
+
 .menu-container {
     position: relative;
+    background-color: #333;
 }
 
 #menu-toggle {
-    background-color: #333;
+    background-color: #444;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -61,9 +71,10 @@ button:hover {
     /* Ocultar el menú fuera de la pantalla */
     background-color: #444;
     height: 10vh;
-    width: 100vh;
+    width: 100%;
     transition: top 0.3s ease; /* Transición suave */
     z-index: 1;
+    margin-bottom: 50%;
 }
 
 .menu.active {
@@ -93,4 +104,60 @@ button:hover {
 
 .menu a:hover {
     background-color: #555;
+}
+
+/*Grid con varios productos*/
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: 150px;
+    gap: 10px;
+    row-gap: 5%;
+    padding: 10px;
+}
+
+.featured {
+    grid-column: span 2;
+    grid-row: span 2;
+    background-color: #ffcc00;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.5em;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.featured img {
+    width: 100%; 
+    max-height: 200px;
+    height: auto; 
+    object-fit: cover; /* Mantiene la relación de aspecto y cubre el contenedor */
+}
+
+.product img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; /* Mantiene la relación de aspecto y cubre el contenedor */
+}
+
+.product {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#prod1 {
+    background-image: url(../media/img/boli3.png);  
 }

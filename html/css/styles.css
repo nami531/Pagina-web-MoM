@@ -164,7 +164,6 @@ button:hover {
 
 
 /*Efecto flip card*/
-/* From Uiverse.io by htwarriors108 */ 
 .myCard {
     background-color: transparent;
     width: 190px;
@@ -213,12 +212,12 @@ button:hover {
   
   .frontSide,
   .frontSide::before {
-    background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%);
+    background: rgb(65, 88, 208);
   }
   
   .backSide,
   .backSide::before {
-    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    background: #80D0C7;
   }
   
   .backSide {
@@ -253,4 +252,3 @@ button:hover {
       opacity: 0.3;
     }
   }
-

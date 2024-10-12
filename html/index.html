@@ -12,61 +12,109 @@
   <div class="loaderDiv">
     <span class="loader"></span>
   </div>
+
+  <div class="toggle-switch">
+    <input type="checkbox" class="checkbox" id="checkbox" />
+    <label class="switch-label" for="checkbox">
+      <span class="slider-switch"></span>
+    </label>
+  </div>
+
   <!-- Cabecera -->
   <header>
-        <!-- Menú de Navegación -->
+    <!-- Menú de Navegación -->
     <div class="menu-container">
       <button id="menu-toggle">☰</button>
-        <nav class="menu">
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Horarios y tarifas</a></li>
-                <li><a href="#">Sobre Nosotros</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
+      <nav class="menu">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Horarios y tarifas</a></li>
+          <li><a href="#">Sobre Nosotros</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </nav>
+      
     </div>
     <div id="header-content">
       <h1>Museum of Momentum - Nadia Márquez Iglesias</h1>
       <p>Ofrecemos soluciones innovadoras para tu negocio.</p>
     </div>
-    
+
   </header>
 
-  
+
 
   <!-- Cuerpo Principal -->
   <main>
     <section>
       <h2>Bienvenido a Nuestra Página</h2>
       <p>
-        Bienvenido a nuestra plataforma, un espacio dedicado a ofrecerte información detallada sobre los servicios que brindamos. En esta página encontrarás recursos útiles que te ayudarán a comprender mejor nuestras soluciones y cómo podemos asistirte en tus proyectos.
-        Nos especializamos en brindar soporte técnico y consultoría, asegurando que cada uno de nuestros clientes reciba la atención personalizada que merece.
-        Nuestro equipo está compuesto por expertos en diversas áreas, lo que nos permite ofrecer soluciones integrales adaptadas a tus necesidades específicas.
+        Bienvenido a nuestra plataforma, un espacio dedicado a ofrecerte información detallada sobre los servicios que
+        brindamos. En esta página encontrarás recursos útiles que te ayudarán a comprender mejor nuestras soluciones y
+        cómo podemos asistirte en tus proyectos.
+        Nos especializamos en brindar soporte técnico y consultoría, asegurando que cada uno de nuestros clientes reciba
+        la atención personalizada que merece.
+        Nuestro equipo está compuesto por expertos en diversas áreas, lo que nos permite ofrecer soluciones integrales
+        adaptadas a tus necesidades específicas.
       </p>
     </section>
 
-    <section>
-      <h2>Quienes somos</h2>
-      <p>
-        Contamos con una amplia gama de servicios diseñados para ayudarte a alcanzar tus objetivos. Desde consultoría tecnológica hasta desarrollo de software a medida, estamos aquí para guiarte en cada paso del camino.
-        Además, proporcionamos capacitación especializada para empresas, asegurándonos de que tu equipo esté preparado para enfrentar los retos del mercado actual.
-        Nos enorgullecemos de nuestro enfoque centrado en el cliente y nuestro compromiso de entregar soluciones que no solo cumplan, sino que superen las expectativas.
-        Trabajamos de la mano contigo para entender tus necesidades y desarrollar estrategias que impulsen tu éxito a largo plazo.
-      </p>
+    <section id="about-us" class="horizontal-scroll-section">
+      <div class="slider">
+        <div class="slides">
+          <div class="slide">
+            <img src="" alt="Imagen 1">
+            <div class="text-content">
+              <h2>Título Sección 1</h2>
+              <h3>Subtítulo Sección 1</h3>
+              <p>Texto descriptivo de la primera sección. Aquí puedes hablar sobre la primera parte del contenido.</p>
+            </div>
+          </div>
+
+          <div class="slide">
+            <img src="" alt="Imagen 2">
+            <div class="text-content">
+              <h2>Título Sección 2</h2>
+              <h3>Subtítulo Sección 2</h3>
+              <p>Texto descriptivo de la segunda sección. Aquí puedes hablar sobre la segunda parte del contenido.</p>
+            </div>
+          </div>
+
+          <div class="slide">
+            <img src="" alt="Imagen 3">
+            <div class="text-content">
+              <h2>Título Sección 3</h2>
+              <h3>Subtítulo Sección 3</h3>
+              <p>Texto descriptivo de la tercera sección. Aquí puedes hablar sobre la tercera parte del contenido.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controles del slider -->
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+
+        <div class="progress-bar">
+          <div class="progress"></div>
+          <div class="progress-point" onmouseover="showTooltip(event)" onmouseout="hideTooltip(event)">
+            <span class="tooltip">0%</span> <!-- Tooltip que mostrará el porcentaje -->
+          </div> <!-- Punto que muestra el progreso -->
+        </div>
+      </div>
+
     </section>
 
     <section>
       <h2>Tienda</h2>
       <div class="grid-container">
-        
-              <!-- Producto destacado -->
+
+        <!-- Producto destacado -->
         <div class="grid-item featured nuevo">
-          
+
           <div class="flip-card">
             <div class="new-label">Nuevo</div> <!-- Etiqueta para los productos nuevos -->
             <div class="flip-card-inner">
-              
+
               <div class="flip-card-front" style="background-image: url('./media/img/boli3.png');">
                 <h2>Featured Product</h2>
                 <p>$120.00</p>
@@ -78,7 +126,7 @@
           </div>
         </div>
 
-            <!-- Normal Product -->
+        <!-- Normal Product -->
         <div class="grid-item normal">
           <div class="flip-card">
             <div class="flip-card-inner">
@@ -177,43 +225,49 @@
           </div>
         </div>
 
-        
-      
+
+
       </div>
     </section>
 
-    <section>
+    <section id="contacto">
       <h2>Contacto</h2>
-      <p>
-        Si deseas más información sobre nuestros servicios o tienes alguna consulta específica, no dudes en ponerte en contacto con nosotros.
-        Estamos disponibles para resolver cualquier duda y ofrecerte la mejor atención posible. Puedes enviarnos un correo electrónico a info@ejemplo.com o llamarnos al número 123-456-789.
-        También puedes utilizar nuestro formulario de contacto, donde uno de nuestros agentes se pondrá en contacto contigo a la brevedad.
-        Tu satisfacción es nuestra prioridad, y estamos aquí para asegurarnos de que obtengas el máximo valor de nuestros servicios.
-      </p>
-      <div class="login-box">
-        <p>Contáctanos</p>
-        <form>
-          <div class="user-box">
-            <input required="" name="" type="text">
-            <label>Email</label>
-          </div>
-          <div class="user-box">
-            <textarea required="" name="" rows="-1"></textarea>
-            <label>Mensaje</label>
-          </div>
-          <a href="#">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Enviar
-          </a>
-        </form>
+      <div id="contacto-content">
+
+        <p>
+          Si deseas más información sobre nuestros servicios o tienes alguna consulta específica, no dudes en ponerte en
+          contacto con nosotros.
+          Estamos disponibles para resolver cualquier duda y ofrecerte la mejor atención posible. Puedes enviarnos un
+          correo electrónico a info@ejemplo.com o llamarnos al número 123-456-789.
+          También puedes utilizar nuestro formulario de contacto, donde uno de nuestros agentes se pondrá en contacto
+          contigo a la brevedad.
+          Tu satisfacción es nuestra prioridad, y estamos aquí para asegurarnos de que obtengas el máximo valor de
+          nuestros servicios.
+        </p>
+        <div class="login-box">
+          <p>Contáctanos</p>
+          <form>
+            <div class="user-box">
+              <input required="" name="" type="text">
+              <label>Email</label>
+            </div>
+            <div class="user-box">
+              <textarea required="" name="" rows="-1"></textarea>
+              <label>Mensaje</label>
+            </div>
+            <a href="#">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Enviar
+            </a>
+          </form>
+        </div>
       </div>
-    </div>
     </section>
 
-    <button type="button">Test button</button>
+    <button type="button" id="test">Test button</button>
   </main>
 
   <!-- Footer -->
@@ -223,7 +277,7 @@
 
   <script>
     // Función para que la página tarde 3s en cargar
-    window.onload = function() {
+    window.onload = function () {
       setTimeout(() => {
         document.querySelector('.loaderDiv').style.display = 'none';
       }, 1000);
@@ -233,35 +287,77 @@
     const toggleButton = document.getElementById('menu-toggle');
     const menu = document.querySelector('.menu');
     const menuLinks = document.querySelectorAll('.menu a');
-    const textHeader = document.getElementById("header-content"); 
+    const textHeader = document.getElementById("header-content");
 
     // Función para mostrar/ocultar el menú
     toggleButton.addEventListener('click', () => {
-        menu.classList.toggle('active');
-        textHeader.style.marginTop = "75px"; 
+      menu.classList.toggle('active');
+      textHeader.style.marginTop = "75px";
     });
 
     // Cerrar el menú al hacer clic en un enlace
     menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            menu.classList.remove('active');
-        });
+      link.addEventListener('click', () => {
+        menu.classList.remove('active');
+      });
     });
 
     // Cerrar el menú al hacer clic fuera del menú
     document.addEventListener('click', (event) => {
-        if (!menu.contains(event.target) && event.target !== toggleButton) {
-            menu.classList.remove('active');
-            textHeader.style.marginTop = "auto"; 
-        }
+      if (!menu.contains(event.target) && event.target !== toggleButton) {
+        menu.classList.remove('active');
+        textHeader.style.marginTop = "auto";
+      }
     });
 
     const textarea = document.querySelector('.user-box textarea');
 
-      textarea.addEventListener('input', function () {
-        this.style.height = 'auto'; // Restablecer la altura
-        this.style.height = Math.min(this.scrollHeight, 200) + 'px'; // Ajustar a la altura del contenido, limitando a 200px
-      });
+    textarea.addEventListener('input', function () {
+      this.style.height = 'auto'; // Restablecer la altura
+      this.style.height = Math.min(this.scrollHeight, 200) + 'px'; // Ajustar a la altura del contenido, limitando a 200px
+    });
+
+
+    //Funciones para el slider
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      const slides = document.querySelector('.slides');
+      const totalSlides = document.querySelectorAll('.slide').length;
+
+      // Asegúrate de que el índice esté dentro del rango
+      if (index >= totalSlides) {
+        currentSlide = 0;
+      } else if (index < 0) {
+        currentSlide = totalSlides - 1;
+      } else {
+        currentSlide = index;
+      }
+
+      // Desplaza el contenedor de las slides
+      slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+      // Actualiza la barra de progreso
+      const progressBar = document.querySelector('.progress');
+      const progressPoint = document.querySelector('.progress-point');
+      const tooltip = document.querySelector('.tooltip');
+      const progressPercentage = (currentSlide / (totalSlides - 1)) * 100;
+
+      // Actualiza el ancho de la barra de progreso
+      progressBar.style.width = `${progressPercentage}%`;
+      // Actualiza la posición del punto de progreso
+      progressPoint.style.left = `${progressPercentage}%`;
+
+      // Actualiza el contenido del tooltip
+      tooltip.innerText = `${Math.round(progressPercentage)}%`;
+    }
+
+    function moveSlide(direction) {
+      showSlide(currentSlide + direction);
+    }
+
+    // Inicializa el slider al cargar la página
+    showSlide(currentSlide);
 
   </script>
 

@@ -1,104 +1,82 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Museum of Momentum</title>
-  <link rel="stylesheet" href="css/styles2.css" type="text/css">
+  <title>Sticky Toggle Switch</title>
+  <style>
+    /* From Uiverse.io by Madflows */
+    .toggle-switch {
+      position: fixed; /* Cambiado a fixed para asegurar que se quede en su lugar */
+      bottom: 20px;    /* Espaciado desde la parte inferior */
+      right: 20px;     /* Espaciado desde la parte derecha */
+      width: 50px;
+      height: 25px;
+      --light: #d8dbe0;
+      --dark: #28292c;
+      --link: rgb(27, 129, 112);
+      --link-hover: rgb(24, 94, 82);
+      z-index: 1000;  /* Asegura que esté por encima de otros elementos */
+    }
+
+    .switch-label {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: var(--dark);
+      border-radius: 25px;
+      cursor: pointer;
+      border: 3px solid var(--dark);
+      position: relative;
+    }
+
+    .checkbox {
+      display: none;
+    }
+
+    .slider {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 25px;
+      transition: 0.3s;
+    }
+
+    .checkbox:checked + .switch-label .slider {
+      background-color: var(--light);
+    }
+
+    .slider::before {
+      content: "";
+      position: absolute;
+      top: 2.5px; 
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      box-shadow: inset 12px -4px 0px 0px var(--light);
+      background-color: var(--dark);
+      transition: 0.3s;
+    }
+
+    .checkbox:checked + .switch-label .slider::before {
+      transform: translateX(28px);
+      background-color: var(--dark);
+      box-shadow: none;
+    }
+  </style>
 </head>
-
 <body>
-  <div class="container">
 
-    <section id="about-us" class="horizontal-scroll-section">
-      <div class="slider">
-        <div class="slides">
-          <div class="slide">
-            <img src="" alt="Imagen 1">
-            <div class="text-content">
-              <h2>Título Sección 1</h2>
-              <h3>Subtítulo Sección 1</h3>
-              <p>Texto descriptivo de la primera sección. Aquí puedes hablar sobre la primera parte del contenido.</p>
-            </div>
-          </div>
-
-          <div class="slide">
-            <img src="" alt="Imagen 2">
-            <div class="text-content">
-              <h2>Título Sección 2</h2>
-              <h3>Subtítulo Sección 2</h3>
-              <p>Texto descriptivo de la segunda sección. Aquí puedes hablar sobre la segunda parte del contenido.</p>
-            </div>
-          </div>
-
-          <div class="slide">
-            <img src="" alt="Imagen 3">
-            <div class="text-content">
-              <h2>Título Sección 3</h2>
-              <h3>Subtítulo Sección 3</h3>
-              <p>Texto descriptivo de la tercera sección. Aquí puedes hablar sobre la tercera parte del contenido.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Controles del slider -->
-        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-        <button class="next" onclick="moveSlide(1)">&#10095;</button>
-        <div class="progress-bar">
-          <div class="progress"></div>
-          <div class="progress-point" onmouseover="showTooltip(event)" onmouseout="hideTooltip(event)">
-            <span class="tooltip">0%</span> <!-- Tooltip que mostrará el porcentaje -->
-          </div> <!-- Punto que muestra el progreso -->
-        </div>
-      </div>
-
-    </section>
-
-    <script>
-      let currentSlide = 0;
-
-      function showSlide(index) {
-        const slides = document.querySelector('.slides');
-        const totalSlides = document.querySelectorAll('.slide').length;
-
-        // Asegúrate de que el índice esté dentro del rango
-        if (index >= totalSlides) {
-          currentSlide = 0;
-        } else if (index < 0) {
-          currentSlide = totalSlides - 1;
-        } else {
-          currentSlide = index;
-        }
-
-        // Desplaza el contenedor de las slides
-        slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-        // Actualiza la barra de progreso
-  const progressBar = document.querySelector('.progress');
-  const progressPoint = document.querySelector('.progress-point');
-  const tooltip = document.querySelector('.tooltip');
-  const progressPercentage = (currentSlide / (totalSlides - 1)) * 100;
-
-  // Actualiza el ancho de la barra de progreso
-  progressBar.style.width = `${progressPercentage}%`;
-  // Actualiza la posición del punto de progreso
-  progressPoint.style.left = `${progressPercentage}%`;
-  
-  // Actualiza el contenido del tooltip
-  tooltip.innerText = `${Math.round(progressPercentage)}%`;
-      }
-
-      function moveSlide(direction) {
-        showSlide(currentSlide + direction);
-      }
-
-      // Inicializa el slider al cargar la página
-      showSlide(currentSlide);
-
-    </script>
+  <div class="toggle-switch">
+    <input type="checkbox" id="checkbox" class="checkbox">
+    <label for="checkbox" class="switch-label">
+      <span class="slider"></span>
+    </label>
   </div>
+
+  <div style="height: 2000px;">
+    <p>Scroll down to see the sticky toggle switch in action!</p>
+  </div>
+
 </body>
-
-
 </html>

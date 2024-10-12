@@ -1,110 +1,175 @@
 /*Elementos básicos del css*/
-section{
-    margin-bottom: 100px;
+section {
+  margin-bottom: 100px;
 }
 
 
 /*Botón con animación*/
-button {
-    transform: perspective(1px) translateZ(0);
-    transition-duration: 0.5s;
+#id {
+  transform: perspective(1px) translateZ(0);
+  transition-duration: 0.5s;
 }
 
-button:hover {
-    transform: scale(0.8);
-    transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+#id:hover {
+  transform: scale(0.8);
+  transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
 }
 
 /*Loader*/
 .loader {
-    width: 48px;
-    height: 48px;
-    border: 5px solid #000;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    display: inline-block;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
+  width: 48px;
+  height: 48px;
+  border: 5px solid #000;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
 }
 
 @keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
 
-    100% {
-        transform: rotate(360deg);
-    }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .loaderDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgb(255, 255, 255);
-    z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(255, 255, 255);
+  z-index: 9999;
 }
+
+
 
 /*Función para el slide in del menú*/
 
 .menu-container {
-    position: relative;
-    background-color: #333;
+  position: relative;
+  background-color: #333;
 }
 
 #menu-toggle {
-    background-color: #444;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
 .menu {
-    position: absolute;
-    top: -25vh;
-    /* Ocultar el menú fuera de la pantalla */
-    background-color: #444;
-    height: 10vh;
-    width: 100%;
-    transition: top 0.3s ease; /* Transición suave */
-    z-index: 1;
-    margin-bottom: 50%;
+  position: absolute;
+  top: -25vh;
+  /* Ocultar el menú fuera de la pantalla */
+  background-color: #444;
+  height: 10vh;
+  width: 100%;
+  transition: top 0.3s ease;
+  /* Transición suave */
+  z-index: 1;
+  margin-bottom: 50%;
 }
 
 .menu.active {
-    top: 0;
-    /* Mostrar el menú */
+  top: 0;
+  /* Mostrar el menú */
 }
 
 .menu ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    /* Disposición en línea horizontal */
-    justify-content: space-around;
-    /* Espaciado entre elementos */
+  list-style: none;
+  padding: 0;
+  display: flex;
+  /* Disposición en línea horizontal */
+  justify-content: space-around;
+  /* Espaciado entre elementos */
 }
 
 .menu li {
-    border-bottom: 1px solid #555;
+  border-bottom: 1px solid #555;
 }
 
 .menu a {
-    color: #fff;
-    text-decoration: none;
-    display: block;
-    padding: 15px;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 15px;
 }
 
 .menu a:hover {
-    background-color: #555;
+  background-color: #555;
 }
+
+.toggle-switch {
+  position: fixed; /* Cambiado a fixed para asegurar que se quede en su lugar */
+  bottom: 20px;    /* Espaciado desde la parte inferior */
+  right: 20px;     /* Espaciado desde la parte derecha */
+  width: 60px;
+  height: 30px;
+  --light: #d8dbe0;
+  --dark: #28292c;
+  --link: rgb(27, 129, 112);
+  --link-hover: rgb(24, 94, 82);
+  z-index: 1000;  /* Asegura que esté por encima de otros elementos */
+}
+
+.switch-label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--dark);
+  border-radius: 25px;
+  cursor: pointer;
+  border: 3px solid var(--dark);
+  position: relative;
+}
+
+.checkbox {
+  display: none;
+}
+
+.slider-switch {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+
+.checkbox:checked + .switch-label .slider-switch {
+  background-color: var(--light);
+}
+
+.slider-switch::before {
+  content: "";
+  position: absolute;
+  top: 2px; 
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: inset 12px -4px 0px 0px var(--light);
+  background-color: var(--dark);
+  transition: 0.3s;
+}
+
+.checkbox:checked + .switch-label .slider-switch::before {
+  transform: translateX(32px);
+  background-color: var(--dark);
+  box-shadow: none;
+}
+
+
+
+
 
 /*Grid con varios productos*/
 * {
@@ -123,7 +188,8 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   grid-gap: 20px;
   padding: 20px;
-  grid-auto-rows: minmax(75px, auto); /* Ajustado para permitir mayor tamaño */
+  grid-auto-rows: minmax(75px, auto);
+  /* Ajustado para permitir mayor tamaño */
   gap: 10px;
   row-gap: 2%;
   column-gap: 2%;
@@ -131,7 +197,8 @@ body {
 }
 
 .grid-item {
-  perspective: 1000px; /* Needed for 3D flip effect */
+  perspective: 1000px;
+  /* Needed for 3D flip effect */
 }
 
 .normal {
@@ -142,6 +209,7 @@ body {
   grid-column: span 4;
   grid-row: span 4;
 }
+
 /*Modificar*/
 .new-label {
   position: absolute;
@@ -151,14 +219,20 @@ body {
   padding: 2px 10px;
   font-size: 12px;
   font-weight: bold;
-  z-index: 2; /* Asegura que esté sobre la tarjeta */
-  transition: opacity 0.1s ease; /* Transición suave para la opacidad */
-  
+  z-index: 2;
+  /* Asegura que esté sobre la tarjeta */
+  transition: opacity 0.5s ease;
+  /* Transición suave para la opacidad */
+
   /* Estilo de cinta */
-  height: 50px; /* Altura del marcador */
-  align-content: center; /* Centrar el texto verticalmente */
-  clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 50% 100%, 0% 70%); /* Puntas en pico */
-  border-radius: 3px 3px 15px 15px; /* Bordes redondeados en la parte superior */
+  height: 50px;
+  /* Altura del marcador */
+  align-content: center;
+  /* Centrar el texto verticalmente */
+  clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 50% 100%, 0% 70%);
+  /* Puntas en pico */
+  border-radius: 3px 3px 15px 15px;
+  /* Bordes redondeados en la parte superior */
 }
 
 /* Crear un pequeño efecto de sombra */
@@ -173,24 +247,51 @@ body {
   z-index: -1;
   border-radius: 3px 3px 15px 15px;
   clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 50% 100%, 0% 70%);
-  transform: translateY(3px); /* Sombra sutil */
-  opacity: 0.5; /* Transparencia para el efecto de sombra */
+  transform: translateY(3px);
+  /* Sombra sutil */
+  opacity: 0.5;
+  /* Transparencia para el efecto de sombra */
 }
+
+/* Crear un pequeño efecto de sombra */
+.new-label::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  z-index: -1;
+  border-radius: 3px 3px 15px 15px;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 50% 100%, 0% 70%);
+  transform: translateY(3px);
+  /* Sombra sutil */
+  opacity: 0.5;
+  /* Transparencia para el efecto de sombra */
+}
+
 /* Ocultar la etiqueta "Nuevo" cuando la tarjeta se dé la vuelta */
 .flip-card:hover .new-label {
   opacity: 0;
 }
+
+
 .flip-card {
   background-color: transparent;
   width: 100%;
   height: 100%;
   cursor: pointer;
-  position: relative; /* Ensure the flip card stays in place */
+  position: relative;
+  /* Ensure the flip card stays in place */
   perspective: 1000px;
-  aspect-ratio: 1; /* Mantén la tarjeta cuadrada */
+  aspect-ratio: 1;
+  /* Mantén la tarjeta cuadrada */
   border-radius: 28px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); /* Sombra */
-  transition: box-shadow 0.4s ease-in-out; /* Transición suave */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+  /* Sombra */
+  transition: box-shadow 0.4s ease-in-out;
+  /* Transición suave */
 }
 
 .flip-card-inner {
@@ -200,21 +301,26 @@ body {
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;
-  transform-origin: center; /* Ensure the rotation happens from the center */
-  transform: translateZ(0); /* Evita desplazamientos 3D no deseados */
+  transform-origin: center;
+  /* Ensure the rotation happens from the center */
+  transform: translateZ(0);
+  /* Evita desplazamientos 3D no deseados */
 }
 
 .flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg); /* Flip horizontally */
+  transform: rotateY(180deg);
+  /* Flip horizontally */
 }
 
-.flip-card-front, .flip-card-back {
+.flip-card-front,
+.flip-card-back {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  backface-visibility: hidden; /* Hide the back face when not visible */
+  backface-visibility: hidden;
+  /* Hide the back face when not visible */
   border-radius: 28px;
 }
 
@@ -233,14 +339,16 @@ body {
 .flip-card-back {
   background-color: #333;
   color: white;
-  transform: rotateY(180deg); /* Flip the back face */
+  transform: rotateY(180deg);
+  /* Flip the back face */
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
 }
 
-h2, p {
+h2,
+p {
   margin: 10px 0;
 }
 
@@ -253,21 +361,186 @@ h2, p {
 }
 
 
+
+
+/* Estilo del slider */
+.slider {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* Ocupa el 100% de la ventana */
+  overflow: hidden;
+  /* Oculta el overflow */
+}
+
+.slides {
+  display: flex;
+  /* Utiliza flexbox para alinear las slides */
+  transition: transform 0.5s ease;
+  /* Transición suave */
+  width: 100%;
+  /* Ancho total de las 3 secciones */
+}
+
+.slide {
+  min-width: 100%;
+  /* Cada slide ocupa el 100% de la pantalla */
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.slide img {
+  width: 33.33%;
+  /* Imagen ocupa 1/3 de la pantalla */
+  object-fit: cover;
+}
+
+.text-content {
+  width: 66.66%;
+  /* El texto ocupa 2/3 de la pantalla */
+  padding: 40px;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text-content h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.text-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.text-content p {
+  font-size: 1.2rem;
+}
+
+/* Estilos para los botones de navegación */
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 5px;
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
+}
+
+/* Estilo del punto en la barra de progreso */
+.progress-bar {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  /* Centra verticalmente el punto */
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background-color: #ff5733;
+  transition: width 0.3s ease;
+  /* Anima el progreso */
+}
+
+/* Estilo del punto que indica el progreso */
+.progress-point {
+  position: absolute;
+  height: 15px;
+  /* Altura del punto */
+  width: 15px;
+  /* Anchura del punto */
+  background-color: #ff5733;
+  /* Color del punto */
+  border-radius: 50%;
+  /* Hace que el punto sea redondo */
+  transform: translate(-50%, -50%);
+  /* Centra el punto */
+  bottom: 10px;
+  /* Posiciona el punto encima de la barra */
+  left: 0;
+  /* Posición inicial del punto */
+}
+
+/* Estilo del tooltip */
+.tooltip {
+  position: absolute;
+  bottom: 30px;
+  /* Ajusta la posición del tooltip */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  /* Color de fondo del tooltip */
+  color: #fff;
+  /* Color del texto */
+  padding: 5px 10px;
+  border-radius: 5px;
+  /* Bordes redondeados */
+  visibility: hidden;
+  /* Oculto por defecto */
+  opacity: 0;
+  /* Inicialmente invisible */
+  transition: visibility 0s, opacity 0.2s;
+  /* Transición suave */
+}
+
+.progress-point:hover .tooltip {
+  visibility: visible;
+  /* Muestra el tooltip al hacer hover */
+  opacity: 1;
+  /* Hace el tooltip visible */
+}
+
+
+/*Estilos del contacto*/
+#contacto-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#contacto-content p {
+  width: 50%;
+  margin: 2vh 3vh;
+  text-align: justify;
+}
+
 /*Formulario*/
 .login-box {
   /* position: absolute;
   top: 50%;
   left: 50%; */
-  width: 400px;
+  width: 50vh;
   padding: 40px;
   /* margin: 20px auto; */
-  background: rgba(0,0,0,.9);
+  background: rgba(0, 0, 0, .9);
   box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
   border-radius: 10px;
 
-    /* Establecer la altura máxima */
-max-height: 600px; 
+  /* Establecer la altura máxima */
+  max-height: 500px;
 }
 
 .login-box p:first-child {
@@ -307,8 +580,8 @@ max-height: 600px;
   transition: .5s;
 }
 
-.login-box .user-box input:focus ~ label,
-.login-box .user-box input:valid ~ label {
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label {
   top: -20px;
   left: 0;
   color: #fff;
@@ -355,7 +628,8 @@ max-height: 600px;
     left: -100%;
   }
 
-  50%,100% {
+  50%,
+  100% {
     left: 100%;
   }
 }
@@ -375,7 +649,8 @@ max-height: 600px;
     top: -100%;
   }
 
-  50%,100% {
+  50%,
+  100% {
     top: 100%;
   }
 }
@@ -395,7 +670,8 @@ max-height: 600px;
     right: -100%;
   }
 
-  50%,100% {
+  50%,
+  100% {
     right: 100%;
   }
 }
@@ -415,7 +691,8 @@ max-height: 600px;
     bottom: -100%;
   }
 
-  50%,100% {
+  50%,
+  100% {
     bottom: 100%;
   }
 }
@@ -446,24 +723,29 @@ max-height: 600px;
   border-bottom: 1px solid #fff;
   outline: none;
   background: transparent;
-  resize: none; /* Desactiva la capacidad de cambiar el tamaño del textarea */
-  height: auto; /* Para asegurarse de que el textarea crezca con su contenido */
+  resize: none;
+  /* Desactiva la capacidad de cambiar el tamaño del textarea */
+  height: auto;
+  /* Para asegurarse de que el textarea crezca con su contenido */
 
   /* Ajustes para eliminar el salto de línea */
-line-height: 1.5; /* Ajusta la altura de línea si es necesario */
-padding-bottom: 0; /* Elimina el padding inferior */
-box-sizing: border-box; /* Incluye el padding en el ancho total del textarea */
+  line-height: 1.5;
+  /* Ajusta la altura de línea si es necesario */
+  padding-bottom: 0;
+  /* Elimina el padding inferior */
+  box-sizing: border-box;
+  /* Incluye el padding en el ancho total del textarea */
 }
 
 
-.login-box .user-box textarea:focus ~ label,
-.login-box .user-box textarea:valid ~ label {
+.login-box .user-box textarea:focus~label,
+.login-box .user-box textarea:valid~label {
   top: -20px;
   left: 0;
   color: #fff;
   font-size: 12px;
 }
 
-.user-box{
+.user-box {
   margin-bottom: 10px;
 }

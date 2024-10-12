@@ -1,453 +1,130 @@
-/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
+/* Estilo del slider */
+.slider {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Ocupa el 100% de la ventana */
+  overflow: hidden; /* Oculta el overflow */
 }
 
-.section {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
+.slides {
+  display: flex; /* Utiliza flexbox para alinear las slides */
+  transition: transform 0.5s ease; /* Transición suave */
+  width: 100%; /* Ancho total de las 3 secciones */
 }
 
-/* Background images for sections */
-#quienes-somos {
-    background-image: url('quienes-somos-bg.jpg');
+.slide {
+  min-width: 100%; /* Cada slide ocupa el 100% de la pantalla */
+  height: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
-#nuevo-concepto {
-    background-image: url('nuevo-concepto-bg.jpg');
+.slide img {
+  width: 33.33%; /* Imagen ocupa 1/3 de la pantalla */
+  object-fit: cover;
 }
 
-#compromiso {
-    background-image: url('compromiso-bg.jpg');
+.text-content {
+  width: 66.66%; /* El texto ocupa 2/3 de la pantalla */
+  padding: 40px;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* Overlay with text */
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for readability */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 20px;
-    z-index: 1;
+.text-content h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
 }
 
-h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    z-index: 2;
+.text-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
 }
 
-h2 {
-    font-size: 2em;
-    margin-bottom: 15px;
-    z-index: 2;
+.text-content p {
+  font-size: 1.2rem;
 }
 
-p {
-    font-size: 1.2em;
-    margin-bottom: 15px;
-    z-index: 2;
+/* Estilos para los botones de navegación */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 5px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2em;
-    }
-
-    h2 {
-        font-size: 1.5em;
-    }
-
-    p {
-        font-size: 1em;
-    }
-
-    .section {
-        height: 80vh;
-    }
+.prev {
+  left: 20px;
 }
 
-
-/* Contenedor de la barra de progreso */
-.progress-container {
-    width: 100%;
-    height: 30px;
-    background-color: #f3f3f3;
-    border-radius: 5px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.next {
+  right: 20px;
 }
 
-/* Estilo de la barra de progreso */
+/* Estilo del punto en la barra de progreso */
 .progress-bar {
-    height: 100%;
-    background-color: #4caf50;
-    border-radius: 5px 0 0 5px;
-    position: relative;
-    overflow: hidden;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: #ddd;
+  display: flex;
+  align-items: center; /* Centra verticalmente el punto */
 }
 
-/* Pseudo-elemento para el texto personalizado */
-.progress-bar::after {
-    content: attr(data-progress); /* Usamos el valor del atributo data-progress como texto */
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    z-index: 1;
+.progress {
+  height: 100%;
+  width: 0%;
+  background-color: #ff5733;
+  transition: width 0.3s ease; /* Anima el progreso */
 }
 
-/* Estilo extra para darle un efecto de brillo a la barra */
-.progress-bar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-    z-index: 0;
-    pointer-events: none;
+/* Estilo del punto que indica el progreso */
+.progress-point {
+  position: absolute;
+  height: 15px; /* Altura del punto */
+  width: 15px; /* Anchura del punto */
+  background-color: #ff5733; /* Color del punto */
+  border-radius: 50%; /* Hace que el punto sea redondo */
+  transform: translate(-50%, -50%); /* Centra el punto */
+  bottom: 10px; /* Posiciona el punto encima de la barra */
+  left: 0; /* Posición inicial del punto */
 }
 
-
-
-/* Contenedor del formulario */
-.form-container {
-    width: 100%;
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+/* Estilo del tooltip */
+.tooltip {
+  position: absolute;
+  bottom: 30px; /* Ajusta la posición del tooltip */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333; /* Color de fondo del tooltip */
+  color: #fff; /* Color del texto */
+  padding: 5px 10px;
+  border-radius: 5px; /* Bordes redondeados */
+  visibility: hidden; /* Oculto por defecto */
+  opacity: 0; /* Inicialmente invisible */
+  transition: visibility 0s, opacity 0.2s; /* Transición suave */
 }
 
-/* Encabezado del formulario */
-.register-form h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
+.progress-point:hover .tooltip {
+  visibility: visible; /* Muestra el tooltip al hacer hover */
+  opacity: 1; /* Hace el tooltip visible */
 }
-
-/* Estilos generales de los campos del formulario */
-.form-group {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-input[type="text"], input[type="email"], input[type="password"] {
-    width: 100%;
-    padding: 10px 10px;
-    font-size: 16px;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    outline: none;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-    background-color: #f9f9f9;
-}
-
-/* Efecto de foco en los campos */
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
-    border-color: #4caf50;
-    background-color: #fff;
-}
-
-/* Estilos para las etiquetas flotantes */
-label {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #aaa;
-    pointer-events: none;
-    font-size: 16px;
-    transition: 0.3s ease;
-}
-
-/* Al escribir o hacer foco en el campo, la etiqueta se desplaza hacia arriba */
-input:focus ~ label, input:not(:placeholder-shown) ~ label {
-    top: -10px;
-    font-size: 12px;
-    color: #4caf50;
-}
-
-/* Botón de envío */
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4caf50;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-/* Animación sutil al cargar el formulario */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Aplicación de la animación al cargar */
-.form-container {
-    animation: fadeIn 0.6s ease;
-}
-
-
-/*Formulario*/
-/* From Uiverse.io by glisovic01 */ 
-.login-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    padding: 40px;
-    margin: 20px auto;
-    transform: translate(-50%, -55%);
-    background: rgba(0,0,0,.9);
-    box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0,0,0,.6);
-    border-radius: 10px;
-
-      /* Establecer la altura máxima */
-  max-height: 600px; /* Cambia este valor según sea necesario */
-  }
-  
-  .login-box p:first-child {
-    margin: 0 0 30px;
-    padding: 0;
-    color: #fff;
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-  }
-  
-  .login-box .user-box {
-    position: relative;
-  }
-  
-  .login-box .user-box input {
-    width: 100%;
-    padding: 10px 0;
-    font-size: 16px;
-    color: #fff;
-    margin-bottom: 30px;
-    border: none;
-    border-bottom: 1px solid #fff;
-    outline: none;
-    background: transparent;
-  }
-  
-  .login-box .user-box label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px 0;
-    font-size: 16px;
-    color: #fff;
-    pointer-events: none;
-    transition: .5s;
-  }
-  
-  .login-box .user-box input:focus ~ label,
-  .login-box .user-box input:valid ~ label {
-    top: -20px;
-    left: 0;
-    color: #fff;
-    font-size: 12px;
-  }
-  
-  .login-box form a {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    font-weight: bold;
-    color: #fff;
-    font-size: 16px;
-    text-decoration: none;
-    text-transform: uppercase;
-    overflow: hidden;
-    transition: .5s;
-    margin-top: 40px;
-    letter-spacing: 3px
-  }
-  
-  .login-box a:hover {
-    background: #fff;
-    color: #272727;
-    border-radius: 5px;
-  }
-  
-  .login-box a span {
-    position: absolute;
-    display: block;
-  }
-  
-  .login-box a span:nth-child(1) {
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #fff);
-    animation: btn-anim1 12.5s linear infinite;
-  }
-  
-  @keyframes btn-anim1 {
-    0% {
-      left: -100%;
-    }
-  
-    50%,100% {
-      left: 100%;
-    }
-  }
-  
-  .login-box a span:nth-child(2) {
-    top: -100%;
-    right: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent, #fff);
-    animation: btn-anim2 12.5s linear infinite;
-    animation-delay: 3.125s
-  }
-  
-  @keyframes btn-anim2 {
-    0% {
-      top: -100%;
-    }
-  
-    50%,100% {
-      top: 100%;
-    }
-  }
-  
-  .login-box a span:nth-child(3) {
-    bottom: 0;
-    right: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent, #fff);
-    animation: btn-anim3 12.5s linear infinite;
-    animation-delay: 6.25s
-  }
-  
-  @keyframes btn-anim3 {
-    0% {
-      right: -100%;
-    }
-  
-    50%,100% {
-      right: 100%;
-    }
-  }
-  
-  .login-box a span:nth-child(4) {
-    bottom: -100%;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent, #fff);
-    animation: btn-anim4 12.5s linear infinite;
-    animation-delay: 9.375s
-  }
-  
-  @keyframes btn-anim4 {
-    0% {
-      bottom: -100%;
-    }
-  
-    50%,100% {
-      bottom: 100%;
-    }
-  }
-  
-  .login-box p:last-child {
-    color: #aaa;
-    font-size: 14px;
-  }
-  
-  .login-box a.a2 {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .login-box a.a2:hover {
-    background: transparent;
-    color: #aaa;
-    border-radius: 5px;
-  }
-
-  .login-box .user-box textarea {
-    width: 100%;
-    padding: 10px 0;
-    font-size: 16px;
-    color: #fff;
-    margin-bottom: 30px;
-    border: none;
-    border-bottom: 1px solid #fff;
-    outline: none;
-    background: transparent;
-    resize: none; /* Desactiva la capacidad de cambiar el tamaño del textarea */
-    height: auto; /* Para asegurarse de que el textarea crezca con su contenido */
-
-    /* Ajustes para eliminar el salto de línea */
-  line-height: 1.5; /* Ajusta la altura de línea si es necesario */
-  padding-bottom: 0; /* Elimina el padding inferior */
-  box-sizing: border-box; /* Incluye el padding en el ancho total del textarea */
-  }
-
-  
-  .login-box .user-box textarea:focus ~ label,
-  .login-box .user-box textarea:valid ~ label {
-    top: -20px;
-    left: 0;
-    color: #fff;
-    font-size: 12px;
-  }
-  
-  .user-box{
-    margin-bottom: 10px;
-  }

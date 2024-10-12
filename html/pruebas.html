@@ -7,73 +7,95 @@
   <title>Museum of Momentum</title>
   <link rel="stylesheet" href="css/styles2.css" type="text/css">
 </head>
+
 <body>
   <div class="container">
-      <!-- Sección: ¿Quiénes somos?
-      <div class="section" id="quienes-somos">
-          <div class="overlay">
-              <h1>¿Quiénes somos?</h1>
-              <h2>Unos nómadas del arte</h2>
-              <p>Bienvenidos a un museo donde el arte nunca se queda quieto.</p>
-              <p>Somos Germán y Nadia, los fundadores de este museo de arte que no para de cambiar. Nos une una misma pasión: hacer del arte una experiencia siempre nueva y emocionante. Creemos que el arte es algo vivo, que debe estar en constante movimiento, y eso es exactamente lo que queríamos para este espacio.</p>
+
+    <section id="about-us" class="horizontal-scroll-section">
+      <div class="slider">
+        <div class="slides">
+          <div class="slide">
+            <img src="" alt="Imagen 1">
+            <div class="text-content">
+              <h2>Título Sección 1</h2>
+              <h3>Subtítulo Sección 1</h3>
+              <p>Texto descriptivo de la primera sección. Aquí puedes hablar sobre la primera parte del contenido.</p>
+            </div>
           </div>
+
+          <div class="slide">
+            <img src="" alt="Imagen 2">
+            <div class="text-content">
+              <h2>Título Sección 2</h2>
+              <h3>Subtítulo Sección 2</h3>
+              <p>Texto descriptivo de la segunda sección. Aquí puedes hablar sobre la segunda parte del contenido.</p>
+            </div>
+          </div>
+
+          <div class="slide">
+            <img src="" alt="Imagen 3">
+            <div class="text-content">
+              <h2>Título Sección 3</h2>
+              <h3>Subtítulo Sección 3</h3>
+              <p>Texto descriptivo de la tercera sección. Aquí puedes hablar sobre la tercera parte del contenido.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controles del slider -->
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        <div class="progress-bar">
+          <div class="progress"></div>
+          <div class="progress-point" onmouseover="showTooltip(event)" onmouseout="hideTooltip(event)">
+            <span class="tooltip">0%</span> <!-- Tooltip que mostrará el porcentaje -->
+          </div> <!-- Punto que muestra el progreso -->
+        </div>
       </div>
 
-      Sección: Un nuevo concepto -->
-      <!-- <div class="section" id="nuevo-concepto">
-          <div class="overlay">
-              <h1>Un nuevo concepto</h1>
-              <p>Aquí creemos que el arte es como las estaciones: siempre cambiante, sorprendente y lleno de vida. Aunque tenemos unas pocas exposiciones fijas, nuestro corazón late al ritmo de las nuevas ideas, de las obras que vienen y van según la temporada, siempre ofreciendo algo fresco para descubrir.</p>
-              <p>Fundamos este museo porque creemos en el poder del arte para emocionar, para hacernos reflexionar y, sobre todo, para divertirse. Queremos ser ese lugar donde los artistas, tanto los ya reconocidos como los que apenas empiezan, puedan brillar y conectar con personas curiosas como tú, que buscan experiencias únicas.</p>
-          </div>
-      </div> -->
+    </section>
 
-      <!-- Sección: Nuestro compromiso -->
-      <!-- <div class="section" id="compromiso">
-          <div class="overlay">
-              <h1>Nuestro compromiso</h1>
-              <p>En nuestro museo, nos dedicamos a crear un espacio inclusivo y accesible para todos. Creemos que el arte debe ser una experiencia enriquecedora que invite a la participación y al diálogo. Por ello, ofrecemos programas y actividades que fomentan la interacción y la reflexión, permitiendo a los visitantes conectar con el arte de maneras significativas.</p>
-              <p>También nos esforzamos por trabajar de la mano con artistas emergentes y consagrados, asegurando que nuestras exposiciones reflejen la diversidad de perspectivas que enriquecen nuestra comunidad.</p>
-              <p>Además, estamos comprometidos con prácticas sostenibles que respeten el medio ambiente y apoyen a la comunidad local.</p>
-          </div>
-      </div>
-      <!DOCTYPE html> -->
+    <script>
+      let currentSlide = 0;
 
-    <!-- <div class="progress-container">
-        <div class="progress-bar" style="width: 75%;" data-progress="75%">
-            La barra de progreso está al 75% -->
-        <!-- </div>
-    </div> -->
+      function showSlide(index) {
+        const slides = document.querySelector('.slides');
+        const totalSlides = document.querySelectorAll('.slide').length;
 
+        // Asegúrate de que el índice esté dentro del rango
+        if (index >= totalSlides) {
+          currentSlide = 0;
+        } else if (index < 0) {
+          currentSlide = totalSlides - 1;
+        } else {
+          currentSlide = index;
+        }
 
-    <div class="login-box">
-      <p>Contáctanos</p>
-      <form>
-        <div class="user-box">
-          <input required="" name="" type="text">
-          <label>Email</label>
-        </div>
-        <div class="user-box">
-          <textarea required="" name="" rows="-1"></textarea>
-          <label>Mensaje</label>
-        </div>
-        <a href="#">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          Enviar
-        </a>
-      </form>
-    </div>
-    
-    <script> 
-      const textarea = document.querySelector('.user-box textarea');
+        // Desplaza el contenedor de las slides
+        slides.style.transform = `translateX(-${currentSlide * 100}%)`;
 
-      textarea.addEventListener('input', function () {
-        this.style.height = 'auto'; // Restablecer la altura
-        this.style.height = Math.min(this.scrollHeight, 200) + 'px'; // Ajustar a la altura del contenido, limitando a 200px
-      });
+        // Actualiza la barra de progreso
+  const progressBar = document.querySelector('.progress');
+  const progressPoint = document.querySelector('.progress-point');
+  const tooltip = document.querySelector('.tooltip');
+  const progressPercentage = (currentSlide / (totalSlides - 1)) * 100;
+
+  // Actualiza el ancho de la barra de progreso
+  progressBar.style.width = `${progressPercentage}%`;
+  // Actualiza la posición del punto de progreso
+  progressPoint.style.left = `${progressPercentage}%`;
+  
+  // Actualiza el contenido del tooltip
+  tooltip.innerText = `${Math.round(progressPercentage)}%`;
+      }
+
+      function moveSlide(direction) {
+        showSlide(currentSlide + direction);
+      }
+
+      // Inicializa el slider al cargar la página
+      showSlide(currentSlide);
+
     </script>
   </div>
 </body>

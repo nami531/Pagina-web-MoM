@@ -28,7 +28,7 @@
       <nav class="menu">
         <ul>
           <li><a href="#">Inicio</a></li>
-          <li><a href="#">Horarios y tarifas</a></li>
+          <li><a href="#">Quiénes somos</a></li>
           <li><a href="#">Sobre Nosotros</a></li>
           <li><a href="#">Contacto</a></li>
         </ul>
@@ -63,29 +63,46 @@
       <div class="slider">
         <div class="slides">
           <div class="slide">
-            <img src="" alt="Imagen 1">
+            <div class="imagenes">
+              <img src="./media/img/quienes_somos/ecce_homo_fondo.jpg" alt="Exposición cuadro Ecce Homo" class="fondo">
+              <img src="./media/img/quienes_somos/ecce_homo_img.png" alt="Exposición cuadro Ecce Homo" class="resalto">
+            </div>
             <div class="text-content">
-              <h2>Título Sección 1</h2>
-              <h3>Subtítulo Sección 1</h3>
-              <p>Texto descriptivo de la primera sección. Aquí puedes hablar sobre la primera parte del contenido.</p>
+              <h2>¿Quiénes somos?:</h2>
+              <h3>Unos nómadas del arte</h3>
+              <p>Bienvenidos a un museo donde el arte nunca se queda quieto.
+
+                Somos Germán y Nadia, los fundadores de este museo de arte que no para de cambiar. Nos une una misma pasión: hacer del arte una experiencia siempre nueva y emocionante. Creemos que el arte es algo vivo, que debe estar en constante movimiento, y eso es exactamente lo que queríamos para este espacio.
+                
+                Nos gusta lo inesperado, lo divertido y lo conmovedor, y estamos seguros de que, como nosotros, disfrutarás descubriendo algo nuevo en cada rincón de este museo.</p>
             </div>
           </div>
 
           <div class="slide">
-            <img src="" alt="Imagen 2">
+            <div class="imagenes">
+              <img src="./media/img/quienes_somos/escultura_fondo.jpg" alt="Exposición escultura Mare Monsrei" class="fondo">
+              <img src="./media/img/quienes_somos/escultura_img.webp" alt="Exposición escultura Mare Monsrei" class="resalto">
+            </div>
             <div class="text-content">
-              <h2>Título Sección 2</h2>
-              <h3>Subtítulo Sección 2</h3>
-              <p>Texto descriptivo de la segunda sección. Aquí puedes hablar sobre la segunda parte del contenido.</p>
+              <h2>Nuestro museo</h2>
+              <h3>Un nuevo concepto</h3>
+              <p>Aquí creemos que el arte es como las estaciones: siempre cambiante, sorprendente y lleno de vida. Aunque tenemos unas pocas exposiciones fijas, nuestro corazón late al ritmo de las nuevas ideas, de las obras que vienen y van según la temporada, siempre ofreciendo algo fresco para descubrir.
+
+                
+                
+                Nos encanta lo inesperado, lo que te hace detenerte y decir: “¡Wow! ¿De dónde salió esto?”. Cada vez que nos visitas, te invitamos a un viaje diferente, lleno de sorpresas, colores y formas que hablan por sí mismas. Aquí, el arte está vivo, y cada rincón de nuestro museo te espera con una sonrisa y una nueva historia que contar.</p>
             </div>
           </div>
 
           <div class="slide">
-            <img src="" alt="Imagen 3">
+            <div class="imagenes">
+              <img src="./media/img/quienes_somos/Espacio-SOLO-Museum-Exhibition-RETOCADA.jpg" alt="Exposición escultura Solo Magnum" class="fondo">
+              <img src="./media/img/quienes_somos/solo_img.png" alt="Exposición escultura Solo Magnum" class="resalto">
+            </div>
             <div class="text-content">
-              <h2>Título Sección 3</h2>
-              <h3>Subtítulo Sección 3</h3>
-              <p>Texto descriptivo de la tercera sección. Aquí puedes hablar sobre la tercera parte del contenido.</p>
+              <h2>¿Por qué lo hacemos?</h2>
+              <h3>Un compromiso</h3>
+              <p>En nuestro museo, nos dedicamos a crear un espacio inclusivo y accesible para todos. Creemos que el arte debe ser una experiencia enriquecedora que invite a la participación y al diálogo. Por ello, ofrecemos programas y actividades que fomentan la interacción y la reflexión, permitiendo a los visitantes conectar con el arte de maneras significativas. También nos esforzamos por trabajar de la mano con artistas emergentes y consagrados, asegurando que nuestras exposiciones reflejen la diversidad de perspectivas que enriquecen nuestra comunidad. Además, estamos comprometidos con prácticas sostenibles que respeten el medio ambiente y apoyen a la comunidad local.</p>
             </div>
           </div>
         </div>
@@ -104,7 +121,7 @@
 
     </section>
 
-    <section>
+    <section class="tienda">
       <h2>Tienda</h2>
       <div class="grid-container">
 
@@ -231,48 +248,42 @@
     </section>
 
     <section id="contacto">
-      <h2>Contacto</h2>
+      <h2>Contáctanos</h2>
+      
       <div id="contacto-content">
 
         <p>
-          Si deseas más información sobre nuestros servicios o tienes alguna consulta específica, no dudes en ponerte en
-          contacto con nosotros.
-          Estamos disponibles para resolver cualquier duda y ofrecerte la mejor atención posible. Puedes enviarnos un
-          correo electrónico a info@ejemplo.com o llamarnos al número 123-456-789.
-          También puedes utilizar nuestro formulario de contacto, donde uno de nuestros agentes se pondrá en contacto
-          contigo a la brevedad.
-          Tu satisfacción es nuestra prioridad, y estamos aquí para asegurarnos de que obtengas el máximo valor de
-          nuestros servicios.
+          ¿Tienes un tesoro escondido en tu mente? ¿Una obra de arte que te quita el aliento? Compártela con nosotros! Queremos saber qué te inspira, qué te hace volver y qué te gustaría ver más en nuestro museo. Tu opinión es nuestra mayor obra maestra.
         </p>
         <div class="login-box">
           <p>Contáctanos</p>
-          <form>
+          <form method="get" action="#">
             <div class="user-box">
-              <input required="" name="" type="text">
+              <input  name="email" type="email" id="email" >
               <label>Email</label>
             </div>
             <div class="user-box">
-              <textarea required="" name="" rows="-1"></textarea>
+              <textarea  name="mensaje" rows="0" id="mensaje" ></textarea>
               <label>Mensaje</label>
             </div>
-            <a href="#">
+            <div class="button-form">
               <span></span>
               <span></span>
               <span></span>
               <span></span>
-              Enviar
-            </a>
+              <input type="submit" value="Enviar">
+            </div>
+            
           </form>
         </div>
       </div>
     </section>
 
-    <button type="button" id="test">Test button</button>
   </main>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2024 Ejemplo de Museum of Momentum. Todos los derechos reservados. Nadia Márquez Iglesias</p>
+    <p class="content-footer">&copy; 2024 Ejemplo de Museum of Momentum. Todos los derechos reservados. Nadia Márquez Iglesias</p>
   </footer>
 
   <script>

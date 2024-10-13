@@ -2,6 +2,15 @@
 section {
   margin-bottom: 100px;
 }
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: #f3f3f3;
+  color: #333;
+}
+
 
 
 /*Botón con animación*/
@@ -87,7 +96,7 @@ section {
 
 .menu ul {
   list-style: none;
-  padding: 0;
+  padding: 10px;
   display: flex;
   /* Disposición en línea horizontal */
   justify-content: space-around;
@@ -108,6 +117,46 @@ section {
 .menu a:hover {
   background-color: #555;
 }
+
+.menu li:hover > a {
+  background-color: #333; /* Cambia el fondo del elemento actual */
+  color: white; /* Cambia el color del texto */
+}
+
+/* Ilumina elementos adyacentes */
+.menu li:hover + li > a,
+.menu li:hover ~ li > a {
+  background-color: #333; /* Cambia el fondo de los elementos hermanos */
+  color: white; /* Cambia el color del texto de los hermanos */
+}
+
+/* Para iluminar el anterior también */
+.menu li:hover ~ li:first-child > a {
+  background-color: #333; /* Cambia el fondo del primer hermano después del que se pasa el ratón */
+  color: white; /* Cambia el color del texto del primer hermano */
+}
+
+/*.menu ul li:first-child a:hover {
+  background-color: #4CAF50; /* Color de fondo del primer elemento en hover */
+  /*color: white; /* Color de texto en hover */
+  /*font-weight: bold; /* Negrita en hover */
+/*}
+
+/* Estilo del último elemento solo cuando se hace hover */
+/*.menu ul li:last-child a:hover {
+  background-color: #f44336; /* Color de fondo del último elemento en hover */
+  /*color: white; /* Color de texto en hover */
+  /*font-weight: bold; /* Negrita en hover */
+/*}*/
+
+
+
+
+
+
+
+
+/*Boton modo oscuro modo claro*/
 
 .toggle-switch {
   position: fixed; /* Cambiado a fixed para asegurar que se quede en su lugar */
@@ -172,6 +221,7 @@ section {
 
 
 /*Grid con varios productos*/
+
 * {
   /*IMportante para el no desplazamiento de los productos al girar*/
   margin: 0;
@@ -179,9 +229,7 @@ section {
   box-sizing: border-box;
 }
 
-body {
-  font-family: Arial, sans-serif;
-}
+
 
 .grid-container {
   display: grid;
@@ -193,7 +241,8 @@ body {
   gap: 10px;
   row-gap: 2%;
   column-gap: 2%;
-  padding: 10px;
+  padding: 20px;
+  margin: 2% 5%; 
 }
 
 .grid-item {
@@ -347,10 +396,7 @@ body {
   padding: 20px;
 }
 
-h2,
-p {
-  margin: 10px 0;
-}
+
 
 /*Para que sea responsive*/
 @media (max-width: 600px) {
@@ -364,65 +410,88 @@ p {
 
 
 /* Estilo del slider */
+/* Estilo del slider */
 .slider {
   position: relative;
   width: 100%;
-  height: 100vh;
-  /* Ocupa el 100% de la ventana */
+  height: 50vh;
   overflow: hidden;
-  /* Oculta el overflow */
-}
-
-.slides {
-  display: flex;
-  /* Utiliza flexbox para alinear las slides */
-  transition: transform 0.5s ease;
-  /* Transición suave */
-  width: 100%;
-  /* Ancho total de las 3 secciones */
+  background-color: #dddbd9; 
 }
 
 .slide {
   min-width: 100%;
-  /* Cada slide ocupa el 100% de la pantalla */
   height: 100%;
+  display: flex;
+  
+}
+
+
+.slides{
   display: flex;
   flex-direction: row;
 }
-
-.slide img {
+/* Contenedor de las imágenes */
+.imagenes {
+  position: relative;
   width: 33.33%;
-  /* Imagen ocupa 1/3 de la pantalla */
-  object-fit: cover;
+  height: 50vh;
 }
 
+.fondo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.resalto {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+  transition: filter 0.3s ease; /* Transición suave para el filtro */
+}
+
+.resalto:hover {
+  filter: drop-shadow(2px 4px 15px rgba(255, 255, 255, 1)) /*Aplica solo a las areas visibles de la imagen*/
+}
+
+/* Estilos de contenido de texto */
 .text-content {
   width: 66.66%;
-  /* El texto ocupa 2/3 de la pantalla */
   padding: 40px;
-  background-color: #f5f5f5;
+  background-color: #dddbd9;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-height: 50vh;
+}
+
+/* Estilos de los títulos y textos */
+.text-content h2, .text-content h3, .text-content p {
+  margin: 10px 0;
+  text-align: justify;
+  margin:1% 5%;
 }
 
 .text-content h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+  font-size: 2vw;
 }
 
 .text-content h3 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+  font-size: 1.5vw;
 }
 
 .text-content p {
-  font-size: 1.2rem;
+  font-size: 1.2vh;
+  max-height: 25vw;
 }
 
 /* Estilos para los botones de navegación */
-.prev,
-.next {
+.prev, .next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -431,7 +500,7 @@ p {
   font-size: 24px;
   padding: 10px;
   cursor: pointer;
-  z-index: 10;
+  z-index: 10; /* Asegura que los botones estén sobre las imágenes */
   border-radius: 5px;
 }
 
@@ -443,74 +512,76 @@ p {
   right: 20px;
 }
 
-/* Estilo del punto en la barra de progreso */
+/* Estilos de la barra de progreso */
 .progress-bar {
   position: absolute;
-  bottom: 20px;
+  bottom: 0px;
   left: 0;
   width: 100%;
   height: 5px;
   background-color: #ddd;
   display: flex;
   align-items: center;
-  /* Centra verticalmente el punto */
+  z-index: 15; /* Asegura que la barra de progreso esté visible sobre las imágenes */
 }
 
 .progress {
   height: 100%;
   width: 0%;
-  background-color: #ff5733;
+  background-color: #095070;
   transition: width 0.3s ease;
-  /* Anima el progreso */
 }
 
-/* Estilo del punto que indica el progreso */
+/* Estilo del punto en la barra de progreso */
 .progress-point {
   position: absolute;
   height: 15px;
-  /* Altura del punto */
   width: 15px;
-  /* Anchura del punto */
-  background-color: #ff5733;
-  /* Color del punto */
+  background-color: #095070;
   border-radius: 50%;
-  /* Hace que el punto sea redondo */
   transform: translate(-50%, -50%);
-  /* Centra el punto */
-  bottom: 10px;
-  /* Posiciona el punto encima de la barra */
-  left: 0;
-  /* Posición inicial del punto */
+  bottom: -10px;
+  left: 10px;
 }
 
 /* Estilo del tooltip */
 .tooltip {
   position: absolute;
   bottom: 30px;
-  /* Ajusta la posición del tooltip */
   left: 50%;
   transform: translateX(-50%);
   background-color: #333;
-  /* Color de fondo del tooltip */
   color: #fff;
-  /* Color del texto */
   padding: 5px 10px;
   border-radius: 5px;
-  /* Bordes redondeados */
   visibility: hidden;
-  /* Oculto por defecto */
   opacity: 0;
-  /* Inicialmente invisible */
   transition: visibility 0s, opacity 0.2s;
-  /* Transición suave */
 }
 
 .progress-point:hover .tooltip {
   visibility: visible;
-  /* Muestra el tooltip al hacer hover */
   opacity: 1;
-  /* Hace el tooltip visible */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*Estilos del contacto*/
@@ -580,15 +651,15 @@ p {
   transition: .5s;
 }
 
-.login-box .user-box input:focus~label,
-.login-box .user-box input:valid~label {
+#email:focus~label,
+#email:valid~label {
   top: -20px;
   left: 0;
   color: #fff;
   font-size: 12px;
 }
 
-.login-box form a {
+.button-form {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
@@ -603,18 +674,18 @@ p {
   letter-spacing: 3px
 }
 
-.login-box a:hover {
+.button-form:hover {
   background: #fff;
   color: #272727;
   border-radius: 5px;
 }
 
-.login-box a span {
+.button-form span {
   position: absolute;
   display: block;
 }
 
-.login-box a span:nth-child(1) {
+.button-form span:nth-child(1) {
   top: 0;
   left: -100%;
   width: 100%;
@@ -634,7 +705,7 @@ p {
   }
 }
 
-.login-box a span:nth-child(2) {
+.button-form span:nth-child(2) {
   top: -100%;
   right: 0;
   width: 2px;
@@ -655,7 +726,7 @@ p {
   }
 }
 
-.login-box a span:nth-child(3) {
+.button-form span:nth-child(3) {
   bottom: 0;
   right: -100%;
   width: 100%;
@@ -676,7 +747,7 @@ p {
   }
 }
 
-.login-box a span:nth-child(4) {
+.button-form span:nth-child(4) {
   bottom: -100%;
   left: 0;
   width: 2px;
@@ -707,9 +778,9 @@ p {
   text-decoration: none;
 }
 
-.login-box a.a2:hover {
+.button-form input.a2:hover {
   background: transparent;
-  color: #aaa;
+  color: black;
   border-radius: 5px;
 }
 
@@ -738,8 +809,8 @@ p {
 }
 
 
-.login-box .user-box textarea:focus~label,
-.login-box .user-box textarea:valid~label {
+#mensaje:focus~label,
+#mensaje:valid~label {
   top: -20px;
   left: 0;
   color: #fff;
@@ -748,4 +819,44 @@ p {
 
 .user-box {
   margin-bottom: 10px;
+}
+
+/* Estilo para el input email inválido */
+#email:invalid {
+  border-bottom: 1px solid red; /* Cambia el color de la línea inferior a rojo */
+  background: rgba(255, 0, 0, 0.1); /* Fondo ligero para resaltar el error */
+}
+
+/* Estilo para el textarea inválido */
+#mensaje:invalid {
+  border-bottom: 1px solid red; /* Cambia el color de la línea inferior a rojo */
+  background: rgba(255, 0, 0, 0.1); /* Fondo ligero para resaltar el error */
+}
+
+/* Opcional: Estilo para el texto del label en caso de error */
+#email:invalid ~ label,
+#mensaje:invalid ~ label {
+  color: red; /* Cambia el color del label a rojo */
+}
+
+.button-form input {
+  background-color: transparent;
+  color: #f5f5f5;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.button-form input:hover{
+  color:#000; 
+}
+
+
+
+footer {
+  background-color: #444;
+  margin-bottom: 0px;
+  padding: 1% ;
+}
+footer p {
+  text-align: center;
 }

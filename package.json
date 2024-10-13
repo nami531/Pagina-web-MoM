@@ -3,10 +3,13 @@
     "version": "1.0.0",
     "description": "Entorno con SASS usando Docker",
     "scripts": {
-      "build:sass": "sass --no-source-map html/scss/styles.scss html/css/styles.css",
-      "watch:sass": "sass --watch html/scss/styles.scss:html/css/styles.css"
+        "build:sass": "sass --no-source-map html/scss/styles.scss html/css/styles.css",
+        "watch:sass": "sass --watch html/scss/styles.scss:html/css/styles.css"
     },
     "devDependencies": {
-      "sass": "^1.32.0"
+        "sass": "^1.32.0"
+    },
+    "dependencies": {
+        "sass-docker-example": "file:"
     }
-  }
+}

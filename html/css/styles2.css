@@ -1,130 +1,44 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
-/* Estilo del slider */
-.slider {
+.menu-container {
   position: relative;
-  width: 100%;
-  height: 100vh; /* Ocupa el 100% de la ventana */
-  overflow: hidden; /* Oculta el overflow */
 }
 
-.slides {
-  display: flex; /* Utiliza flexbox para alinear las slides */
-  transition: transform 0.5s ease; /* Transición suave */
-  width: 100%; /* Ancho total de las 3 secciones */
-}
-
-.slide {
-  min-width: 100%; /* Cada slide ocupa el 100% de la pantalla */
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-}
-
-.slide img {
-  width: 33.33%; /* Imagen ocupa 1/3 de la pantalla */
-  object-fit: cover;
-}
-
-.text-content {
-  width: 66.66%; /* El texto ocupa 2/3 de la pantalla */
-  padding: 40px;
-  background-color: #f5f5f5;
+.menu {
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
-.text-content h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+nav ul {
+  list-style-type: none; /* Elimina el estilo de lista */
+  padding: 0;           /* Elimina el padding por defecto */
+  margin: 0;            /* Elimina el margin por defecto */
 }
 
-.text-content h3 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+nav ul li {
+  margin: 5px 0;        /* Espaciado entre elementos del menú */
 }
 
-.text-content p {
-  font-size: 1.2rem;
-}
-
-/* Estilos para los botones de navegación */
-.prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.7);
-  border: none;
-  font-size: 24px;
+nav a {
   padding: 10px;
-  cursor: pointer;
-  z-index: 10;
-  border-radius: 5px;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s ease; /* Suaviza la transición de color */
 }
 
-.prev {
-  left: 20px;
+/* Efecto hover para "Quiénes somos" */
+nav a:nth-child(2):hover,
+nav a:nth-child(2):hover ~ a:nth-child(1),
+nav a:nth-child(2):hover ~ a:nth-child(3) {
+  background-color: lightblue; /* Color de activación */
 }
 
-.next {
-  right: 20px;
+/* Efecto hover para "Sobre Nosotros" */
+nav a:nth-child(3):hover,
+nav a:nth-child(3):hover ~ a:nth-child(2),
+nav a:nth-child(3):hover ~ a:nth-child(4) {
+  background-color: lightblue; /* Color de activación */
 }
 
-/* Estilo del punto en la barra de progreso */
-.progress-bar {
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background-color: #ddd;
-  display: flex;
-  align-items: center; /* Centra verticalmente el punto */
-}
-
-.progress {
-  height: 100%;
-  width: 0%;
-  background-color: #ff5733;
-  transition: width 0.3s ease; /* Anima el progreso */
-}
-
-/* Estilo del punto que indica el progreso */
-.progress-point {
-  position: absolute;
-  height: 15px; /* Altura del punto */
-  width: 15px; /* Anchura del punto */
-  background-color: #ff5733; /* Color del punto */
-  border-radius: 50%; /* Hace que el punto sea redondo */
-  transform: translate(-50%, -50%); /* Centra el punto */
-  bottom: 10px; /* Posiciona el punto encima de la barra */
-  left: 0; /* Posición inicial del punto */
-}
-
-/* Estilo del tooltip */
-.tooltip {
-  position: absolute;
-  bottom: 30px; /* Ajusta la posición del tooltip */
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #333; /* Color de fondo del tooltip */
-  color: #fff; /* Color del texto */
-  padding: 5px 10px;
-  border-radius: 5px; /* Bordes redondeados */
-  visibility: hidden; /* Oculto por defecto */
-  opacity: 0; /* Inicialmente invisible */
-  transition: visibility 0s, opacity 0.2s; /* Transición suave */
-}
-
-.progress-point:hover .tooltip {
-  visibility: visible; /* Muestra el tooltip al hacer hover */
-  opacity: 1; /* Hace el tooltip visible */
+/* Efecto hover general para todos los elementos */
+nav a:hover {
+  background-color: lightgray; /* Color al pasar el mouse */
 }

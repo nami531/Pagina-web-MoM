@@ -156,6 +156,29 @@ body {
 
 
 
+
+
+
+
+
+
+/*Header*/
+.header-content{
+
+}
+
+#title{
+  background-image: url();
+  
+}
+
+#texto-title{
+  
+}
+
+
+
+
 /*Boton modo oscuro modo claro*/
 
 .toggle-switch {
@@ -323,6 +346,7 @@ body {
 /* Ocultar la etiqueta "Nuevo" cuando la tarjeta se dé la vuelta */
 .flip-card:hover .new-label {
   opacity: 0;
+  
 }
 
 
@@ -358,6 +382,7 @@ body {
 
 .flip-card:hover .flip-card-inner {
   transform: rotateY(180deg);
+  
   /* Flip horizontally */
 }
 
@@ -516,8 +541,8 @@ body {
 .progress-bar {
   position: absolute;
   bottom: 0px;
-  left: 0;
-  width: 100%;
+  left: 2.5%;
+  width: 95%;
   height: 5px;
   background-color: #ddd;
   display: flex;
@@ -527,7 +552,7 @@ body {
 
 .progress {
   height: 100%;
-  width: 0%;
+  width: 0%;  
   background-color: #095070;
   transition: width 0.3s ease;
 }
@@ -539,9 +564,10 @@ body {
   width: 15px;
   background-color: #095070;
   border-radius: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
   bottom: -10px;
   left: 10px;
+  
 }
 
 /* Estilo del tooltip */
@@ -549,7 +575,7 @@ body {
   position: absolute;
   bottom: 30px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-40%);
   background-color: #333;
   color: #fff;
   padding: 5px 10px;
@@ -592,25 +618,34 @@ body {
 }
 
 #contacto-content p {
-  width: 50%;
-  margin: 2vh 3vh;
+  width: 100%;
+  /* margin: 2vh 3vh; */
   text-align: justify;
+}
+
+.left-content{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+#mapa{
+  width: 50vw; 
+  height: 40vh;  
+  align-self: center;
+  margin-top: 10px; 
+  border: 0;
 }
 
 /*Formulario*/
 .login-box {
-  /* position: absolute;
-  top: 50%;
-  left: 50%; */
   width: 50vh;
   padding: 40px;
-  /* margin: 20px auto; */
+  margin-left: 20px;
   background: rgba(0, 0, 0, .9);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
   border-radius: 10px;
-
-  /* Establecer la altura máxima */
   max-height: 500px;
 }
 
@@ -628,7 +663,8 @@ body {
   position: relative;
 }
 
-.login-box .user-box input {
+.login-box .user-box input, 
+.login-box .user-box textarea {
   width: 100%;
   padding: 10px 0;
   font-size: 16px;
@@ -638,11 +674,14 @@ body {
   border-bottom: 1px solid #fff;
   outline: none;
   background: transparent;
+  resize: none;
+  line-height: 1.5;
+  box-sizing: border-box;
 }
 
 .login-box .user-box label {
   position: absolute;
-  top: 0;
+  top: 10px;
   left: 0;
   padding: 10px 0;
   font-size: 16px;
@@ -651,14 +690,18 @@ body {
   transition: .5s;
 }
 
-#email:focus~label,
-#email:valid~label {
+/* Estilo para el label cuando el input está enfocado o tiene contenido */
+.user-box input:focus + label,
+.user-box input:not(:placeholder-shown) + label,
+.user-box textarea:focus + label,
+.user-box textarea:not(:placeholder-shown) + label {
   top: -20px;
   left: 0;
   color: #fff;
   font-size: 12px;
 }
 
+/* Botón del formulario */
 .button-form {
   position: relative;
   display: inline-block;
@@ -671,7 +714,7 @@ body {
   overflow: hidden;
   transition: .5s;
   margin-top: 40px;
-  letter-spacing: 3px
+  letter-spacing: 3px;
 }
 
 .button-form:hover {
@@ -699,8 +742,7 @@ body {
     left: -100%;
   }
 
-  50%,
-  100% {
+  50%, 100% {
     left: 100%;
   }
 }
@@ -712,7 +754,7 @@ body {
   height: 100%;
   background: linear-gradient(180deg, transparent, #fff);
   animation: btn-anim2 12.5s linear infinite;
-  animation-delay: 3.125s
+  animation-delay: 3.125s;
 }
 
 @keyframes btn-anim2 {
@@ -720,8 +762,7 @@ body {
     top: -100%;
   }
 
-  50%,
-  100% {
+  50%, 100% {
     top: 100%;
   }
 }
@@ -733,7 +774,7 @@ body {
   height: 2px;
   background: linear-gradient(270deg, transparent, #fff);
   animation: btn-anim3 12.5s linear infinite;
-  animation-delay: 6.25s
+  animation-delay: 6.25s;
 }
 
 @keyframes btn-anim3 {
@@ -741,8 +782,7 @@ body {
     right: -100%;
   }
 
-  50%,
-  100% {
+  50%, 100% {
     right: 100%;
   }
 }
@@ -754,7 +794,7 @@ body {
   height: 100%;
   background: linear-gradient(360deg, transparent, #fff);
   animation: btn-anim4 12.5s linear infinite;
-  animation-delay: 9.375s
+  animation-delay: 9.375s;
 }
 
 @keyframes btn-anim4 {
@@ -762,81 +802,21 @@ body {
     bottom: -100%;
   }
 
-  50%,
-  100% {
+  50%, 100% {
     bottom: 100%;
   }
 }
 
-.login-box p:last-child {
-  color: #aaa;
-  font-size: 14px;
-}
-
-.login-box a.a2 {
-  color: #fff;
-  text-decoration: none;
-}
-
-.button-form input.a2:hover {
-  background: transparent;
-  color: black;
-  border-radius: 5px;
-}
-
-.login-box .user-box textarea {
-  width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #fff;
-  margin-bottom: 30px;
-  border: none;
-  border-bottom: 1px solid #fff;
-  outline: none;
-  background: transparent;
-  resize: none;
-  /* Desactiva la capacidad de cambiar el tamaño del textarea */
-  height: auto;
-  /* Para asegurarse de que el textarea crezca con su contenido */
-
-  /* Ajustes para eliminar el salto de línea */
-  line-height: 1.5;
-  /* Ajusta la altura de línea si es necesario */
-  padding-bottom: 0;
-  /* Elimina el padding inferior */
-  box-sizing: border-box;
-  /* Incluye el padding en el ancho total del textarea */
-}
-
-
-#mensaje:focus~label,
-#mensaje:valid~label {
-  top: -20px;
-  left: 0;
-  color: #fff;
-  font-size: 12px;
-}
-
-.user-box {
-  margin-bottom: 10px;
-}
-
-/* Estilo para el input email inválido */
-#email:invalid {
-  border-bottom: 1px solid red; /* Cambia el color de la línea inferior a rojo */
-  background: rgba(255, 0, 0, 0.1); /* Fondo ligero para resaltar el error */
-}
-
-/* Estilo para el textarea inválido */
+/* Estilo de los campos cuando son inválidos */
+#email:invalid,
 #mensaje:invalid {
-  border-bottom: 1px solid red; /* Cambia el color de la línea inferior a rojo */
-  background: rgba(255, 0, 0, 0.1); /* Fondo ligero para resaltar el error */
+  border-bottom: 1px solid red; 
+  background: rgba(255, 0, 0, 0.1); 
 }
 
-/* Opcional: Estilo para el texto del label en caso de error */
 #email:invalid ~ label,
 #mensaje:invalid ~ label {
-  color: red; /* Cambia el color del label a rojo */
+  color: red; 
 }
 
 .button-form input {
@@ -846,8 +826,8 @@ body {
   font-size: 1.5rem;
 }
 
-.button-form input:hover{
-  color:#000; 
+.button-form input:hover {
+  color: #000; 
 }
 
 

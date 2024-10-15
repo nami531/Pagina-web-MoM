@@ -1,3 +1,149 @@
+:root {
+  --background-color-dark: #1C1C21;
+  --text-color-dark: white;
+  --background-color-light: #FFFFFF;
+  --text-color-light: #000000;
+  --primary-color: #444444;
+  --secondary-color: #262f35;
+  --terniary-color: #333; 
+  --cobalt:#095070; 
+}
+
+/* Default to dark mode */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+/* Dark mode specific */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+  }
+  
+  .menu-container, .menu, #menu-toggle, .text-content {
+    background-color: var(--primary-color);
+  }
+
+  .progress, .prev, .next {
+    background-color: var(--secondary-color);
+  }
+
+  .loader {
+    border-color: var(--background-color-light);
+    
+  }
+
+  .loaderDiv{
+    background-color: var(--background-color-dark);
+  }
+}
+
+/* Light mode specific */
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
+  }
+
+  .menu-container, .menu, #menu-toggle, .text-content {
+    background-color: var(--background-color-light);
+  }
+
+  .progress, .prev, .next {
+    background-color: var(--primary-color);
+  }
+
+  .loader {
+    border-color: #000;
+    
+  }
+
+  .loaderDiv{
+    background-color: var(--background-color-dark);
+  }
+}
+
+
+/* Estilos para el modo oscuro */
+body.dark-mode {
+  background-color: var(--background-color-light);
+  color: var(--text-color-ligth);
+}
+
+body.dark-mode .menu-container,
+body.dark-mode .menu,
+body.dark-mode .text-content {
+  background-color: var(--background-color-light);
+}
+
+body.dark-mode .progress,
+body.dark-mode .prev,
+body.dark-mode .next {
+  background-color: var(--secondary-color);
+}
+
+body.dark-mode .loader {
+  border-color: var(--background-color-dark);
+}
+
+body.dark-mode .loaderDiv {
+  background-color: var(--background-color-light);
+}
+
+body.dark-mode #menu-toggle{
+  background-color: var(--background-color-light);
+  color: var(--background-color-dark); 
+}
+
+body.dark-mode li{
+  border-color: var(--background-color-dark);
+  color: var(--text-color-light); 
+}
+
+body.dark-mode .menu a {
+  color: var(--text-color-light); 
+}
+
+body.dark-mode .menu a:hover {
+  background-color: var(--primary-color);
+}
+
+body.dark-mode .menu li:hover > a {
+  background-color: var(--primary-color); /* Cambia el fondo del elemento actual */
+  color:var(--text-color-dark);
+  border-bottom-color: var(--text-color-dark);
+}
+
+/* Ilumina elementos adyacentes */
+body.dark-mode .menu li:hover + li > a,
+body.dark-mode .menu li:hover ~ li > a {
+  background-color: var(--primary-color); /* Cambia el fondo de los elementos hermanos */
+  color:var(--text-color-dark);
+}
+
+/* Para iluminar el anterior también */
+body.dark-mode .menu li:hover ~ li:first-child > a {
+  background-color: var(--primary-color); /* Cambia el fondo del primer hermano después del que se pasa el ratón */
+  color:var(--text-color-dark);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /*Elementos básicos del css*/
 section {
   margin-bottom: 100px;
@@ -7,8 +153,6 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
-  background-color: #f3f3f3;
-  color: #333;
 }
 
 
@@ -28,7 +172,7 @@ body {
 .loader {
   width: 48px;
   height: 48px;
-  border: 5px solid #000;
+  border: 5px solid;
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;
@@ -55,7 +199,6 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgb(255, 255, 255);
   z-index: 9999;
 }
 
@@ -65,28 +208,28 @@ body {
 
 .menu-container {
   position: relative;
-  background-color: #333;
+  background-color: var(--terniary-color);
 }
 
 #menu-toggle {
-  background-color: #444;
-  color: #fff;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
+  color: var(--text-color-dark);
+  background-color: var(--terniary-color);
 }
 
 .menu {
   position: absolute;
   top: -25vh;
   /* Ocultar el menú fuera de la pantalla */
-  background-color: #444;
   height: 10vh;
   width: 100%;
   transition: top 0.3s ease;
   /* Transición suave */
   z-index: 1;
   margin-bottom: 50%;
+  background-color: var(--terniary-color);
 }
 
 .menu.active {
@@ -104,36 +247,29 @@ body {
 }
 
 .menu li {
-  border-bottom: 1px solid #555;
+  border-bottom: 1px solid;
 }
 
 .menu a {
-  color: #fff;
+  color: var(--background-color-light);
   text-decoration: none;
   display: block;
   padding: 15px;
 }
 
-.menu a:hover {
-  background-color: #555;
-}
-
 .menu li:hover > a {
-  background-color: #333; /* Cambia el fondo del elemento actual */
-  color: white; /* Cambia el color del texto */
+  background-color: var(--primary-color); /* Cambia el fondo del elemento actual */
 }
 
 /* Ilumina elementos adyacentes */
 .menu li:hover + li > a,
 .menu li:hover ~ li > a {
-  background-color: #333; /* Cambia el fondo de los elementos hermanos */
-  color: white; /* Cambia el color del texto de los hermanos */
+  background-color: var(--primary-color); /* Cambia el fondo de los elementos hermanos */
 }
 
 /* Para iluminar el anterior también */
 .menu li:hover ~ li:first-child > a {
-  background-color: #333; /* Cambia el fondo del primer hermano después del que se pasa el ratón */
-  color: white; /* Cambia el color del texto del primer hermano */
+  background-color: var(--primary-color); /* Cambia el fondo del primer hermano después del que se pasa el ratón */
 }
 
 /*.menu ul li:first-child a:hover {
@@ -163,17 +299,199 @@ body {
 
 
 /*Header*/
-.header-content{
-
-}
 
 #title{
-  background-image: url();
-  
+  background-image: url("..\/media/img/fondo_inicio.jpg");
+  width: 100%;
+  height: 60vh;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#title::before {
+  content: '';
+  position: absolute;
+  top: 4.1vh;
+  left: 0;
+  width: 100%;
+  height: 60vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Capa negra con 50% de opacidad */
+}
+
+#title > p {
+  z-index: 9999;
+  color: white ;
+  opacity: 100%;
 }
 
 #texto-title{
+  background-color: #444444;  
+  color: whitesmoke;
+  height: 40vh;
+}
+
+
+
+#about-us{
+  margin-top: 0%;
+
+}
+
+
+.slider {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+  background-color: #dddbd9; 
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
   
+}
+
+.slides{
+  display: flex;
+  flex-direction: row;
+}
+
+/* Contenedor de las imágenes */
+.imagenes {
+  position: relative;
+  width: 33.33%;
+  height: 50vh;
+}
+
+.fondo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.resalto {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+  transition: filter 0.3s ease; /* Transición suave para el filtro */
+}
+
+.resalto:hover {
+  filter: drop-shadow(2px 4px 15px rgba(255, 255, 255, 1)) /*Aplica solo a las areas visibles de la imagen*/
+}
+
+/* Estilos de contenido de texto */
+.text-content {
+  width: 66.66%;
+  padding: 40px;
+  background-color: #262f35;
+  color:whitesmoke; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 50vh;
+}
+
+/* Estilos de los títulos y textos */
+.text-content h2, .text-content h3, .text-content p {
+  margin: 10px 0;
+  text-align: justify;
+  margin:1% 5%;
+}
+
+.text-content h2 {
+  font-size: 2vw;
+}
+
+.text-content h3 {
+  font-size: 1.5vw;
+}
+
+.text-content p {
+  font-size: 1.2vh;
+  max-height: 25vw;
+}
+
+/* Estilos para los botones de navegación */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10; /* Asegura que los botones estén sobre las imágenes */
+  border-radius: 5px;
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
+}
+
+/* Estilos de la barra de progreso */
+.progress-bar {
+  position: absolute;
+  bottom: 0px;
+  left: 2.5%;
+  width: 95%;
+  height: 5px;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  z-index: 15; /* Asegura que la barra de progreso esté visible sobre las imágenes */
+}
+
+.progress {
+  height: 100%;
+  width: 0%;  
+  background-color: #095070;
+  transition: width 0.3s ease;
+}
+
+/* Estilo del punto en la barra de progreso */
+.progress-point {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  background-color: #095070;
+  border-radius: 50%;
+  transform: translate(-50%, -40%);
+  bottom: -10px;
+  left: 10px;
+  
+}
+
+/* Estilo del tooltip */
+.tooltip {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-40%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s;
+}
+
+.progress-point:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 
 
@@ -238,6 +556,8 @@ body {
   background-color: var(--dark);
   box-shadow: none;
 }
+
+
 
 
 
@@ -405,13 +725,13 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
-  font-size: 20px;
+  color: var(--text-color-dark); 
+  font-size: 2vh;
   padding: 20px;
 }
 
 .flip-card-back {
-  background-color: #333;
+  background-color: var(--secondary-color);
   color: white;
   transform: rotateY(180deg);
   /* Flip the back face */
@@ -419,6 +739,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 20px;
+  font-size:1.5vh;
 }
 
 
@@ -434,161 +755,18 @@ body {
 
 
 
+
+
+
+
+
+
+
+
+
 /* Estilo del slider */
 /* Estilo del slider */
-.slider {
-  position: relative;
-  width: 100%;
-  height: 50vh;
-  overflow: hidden;
-  background-color: #dddbd9; 
-}
 
-.slide {
-  min-width: 100%;
-  height: 100%;
-  display: flex;
-  
-}
-
-
-.slides{
-  display: flex;
-  flex-direction: row;
-}
-/* Contenedor de las imágenes */
-.imagenes {
-  position: relative;
-  width: 33.33%;
-  height: 50vh;
-}
-
-.fondo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.resalto {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50vh;
-  object-fit: cover;
-  transition: filter 0.3s ease; /* Transición suave para el filtro */
-}
-
-.resalto:hover {
-  filter: drop-shadow(2px 4px 15px rgba(255, 255, 255, 1)) /*Aplica solo a las areas visibles de la imagen*/
-}
-
-/* Estilos de contenido de texto */
-.text-content {
-  width: 66.66%;
-  padding: 40px;
-  background-color: #dddbd9;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  max-height: 50vh;
-}
-
-/* Estilos de los títulos y textos */
-.text-content h2, .text-content h3, .text-content p {
-  margin: 10px 0;
-  text-align: justify;
-  margin:1% 5%;
-}
-
-.text-content h2 {
-  font-size: 2vw;
-}
-
-.text-content h3 {
-  font-size: 1.5vw;
-}
-
-.text-content p {
-  font-size: 1.2vh;
-  max-height: 25vw;
-}
-
-/* Estilos para los botones de navegación */
-.prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.7);
-  border: none;
-  font-size: 24px;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 10; /* Asegura que los botones estén sobre las imágenes */
-  border-radius: 5px;
-}
-
-.prev {
-  left: 20px;
-}
-
-.next {
-  right: 20px;
-}
-
-/* Estilos de la barra de progreso */
-.progress-bar {
-  position: absolute;
-  bottom: 0px;
-  left: 2.5%;
-  width: 95%;
-  height: 5px;
-  background-color: #ddd;
-  display: flex;
-  align-items: center;
-  z-index: 15; /* Asegura que la barra de progreso esté visible sobre las imágenes */
-}
-
-.progress {
-  height: 100%;
-  width: 0%;  
-  background-color: #095070;
-  transition: width 0.3s ease;
-}
-
-/* Estilo del punto en la barra de progreso */
-.progress-point {
-  position: absolute;
-  height: 15px;
-  width: 15px;
-  background-color: #095070;
-  border-radius: 50%;
-  transform: translate(-50%, -40%);
-  bottom: -10px;
-  left: 10px;
-  
-}
-
-/* Estilo del tooltip */
-.tooltip {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-40%);
-  background-color: #333;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s, opacity 0.2s;
-}
-
-.progress-point:hover .tooltip {
-  visibility: visible;
-  opacity: 1;
-}
 
 
 
@@ -642,7 +820,7 @@ body {
   width: 50vh;
   padding: 40px;
   margin-left: 20px;
-  background: rgba(0, 0, 0, .9);
+  background: #262f35;
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
   border-radius: 10px;
@@ -833,7 +1011,7 @@ body {
 
 
 footer {
-  background-color: #444;
+  background-color: #333;
   margin-bottom: 0px;
   padding: 1% ;
 }

@@ -139,6 +139,7 @@ body.dark-mode .next {
 
 body.dark-mode .loader {
   border-color: var(--background-color-dark);
+  border-bottom-color: transparent;
 }
 
 body.dark-mode .loaderDiv {

@@ -7,16 +7,57 @@
   --secondary-color: #262f35;
   --terniary-color: #333; 
   --cobalt:#095070; 
+  --err: red; 
+  --err-background:rgba(255, 0, 0, 0.1);
 }
 
 /* Default to dark mode */
 body {
-  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  line-height: 1.6;
   background-color: var(--background-color-dark);
   color: var(--text-color-dark);
+  transition: background-color 2s ease, color 0.5s ease;
+  font-family: "Bree Serif", serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+h2 {
+  text-align: center;
+
+}
+
+section > h2,  .text-content > h2 {
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 30px;
+  position: relative;
+}
+
+.text-content > h2{
+  font-weight: bold;
+  font-size: 40px;
+}
+h3{
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 5px;
+}
+
+section > h2::after {
+  content: '';
+  position: absolute;
+  left: 40.1%; /* Ajusta la posición del borde */
+  bottom: 0;
+  width: 20%; /* Hace el borde más ancho que el contenedor */
+  height: 1px; /* Grosor del borde */
+  background-color: var(--text-color-dark); /* Color del borde */
+  justify-self: center;
+  text-align: center;
+
 }
 
 /* Dark mode specific */
@@ -47,16 +88,16 @@ body {
 /* Light mode specific */
 @media (prefers-color-scheme: light) {
   body {
-    background-color: var(--background-color-light);
+    background-color: var(--background-color-ligth);
     color: var(--text-color-light);
   }
 
-  .menu-container, .menu, #menu-toggle, .text-content {
+  .menu-container, .menu, #menu-toggle{
     background-color: var(--background-color-light);
   }
 
   .progress, .prev, .next {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
   }
 
   .loader {
@@ -67,6 +108,10 @@ body {
   .loaderDiv{
     background-color: var(--background-color-dark);
   }
+
+  .text-content{
+    background-color: var(--primary-color);
+  }
 }
 
 
@@ -74,18 +119,22 @@ body {
 body.dark-mode {
   background-color: var(--background-color-light);
   color: var(--text-color-ligth);
+  
 }
 
 body.dark-mode .menu-container,
-body.dark-mode .menu,
-body.dark-mode .text-content {
+body.dark-mode .menu {
   background-color: var(--background-color-light);
 }
 
-body.dark-mode .progress,
+body.dark-mode .progress{
+  background-color: var(--cobalt);
+}
+
 body.dark-mode .prev,
 body.dark-mode .next {
-  background-color: var(--secondary-color);
+  background-color: var(--background-color-light);
+  opacity: 0.5;
 }
 
 body.dark-mode .loader {
@@ -133,9 +182,32 @@ body.dark-mode .menu li:hover ~ li:first-child > a {
   color:var(--text-color-dark);
 }
 
+body.dark-mode .login-box{
+  background-color: var(--primary-color);
+}
 
+body.dark-mode .text-content{
+  background-color: var(--primary-color);
+}
 
+body.dark-mode footer{
+  background-color: var(--background-color-light);
+  border-top: solid 1px var(--background-color-dark);
+  color: var(--text-color-light); 
+}
 
+body.dark-mode .login-box{
+  box-shadow: 0px 0px 25px var(--background-color-dark);
+}
+
+body.dark-mode .section > h2 {
+  color: var(--text-color-light);
+}
+
+body.dark-mode section > h2::after {
+  background-color: var(--text-color-light); /* Color del borde */
+
+}
 
 
 
@@ -148,12 +220,7 @@ body.dark-mode .menu li:hover ~ li:first-child > a {
 section {
   margin-bottom: 100px;
 }
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-}
+
 
 
 
@@ -209,6 +276,7 @@ body {
 .menu-container {
   position: relative;
   background-color: var(--terniary-color);
+  transition: background-color 2s ease, color 0.5s ease;
 }
 
 #menu-toggle {
@@ -217,6 +285,7 @@ body {
   cursor: pointer;
   color: var(--text-color-dark);
   background-color: var(--terniary-color);
+  transition: background-color 2s ease, color 0.5s ease;;
 }
 
 .menu {
@@ -225,9 +294,9 @@ body {
   /* Ocultar el menú fuera de la pantalla */
   height: 10vh;
   width: 100%;
-  transition: top 0.3s ease;
+  transition: top 0.3s ease, background-color 2s ease, color 0.5s ease;
   /* Transición suave */
-  z-index: 1;
+  z-index: 5;
   margin-bottom: 50%;
   background-color: var(--terniary-color);
 }
@@ -239,7 +308,6 @@ body {
 
 .menu ul {
   list-style: none;
-  padding: 10px;
   display: flex;
   /* Disposición en línea horizontal */
   justify-content: space-around;
@@ -247,7 +315,7 @@ body {
 }
 
 .menu li {
-  border-bottom: 1px solid;
+  border-bottom: 1px solid var(--background-color-light);
 }
 
 .menu a {
@@ -259,6 +327,7 @@ body {
 
 .menu li:hover > a {
   background-color: var(--primary-color); /* Cambia el fondo del elemento actual */
+  border-color: var(--background-color-light);
 }
 
 /* Ilumina elementos adyacentes */
@@ -307,51 +376,86 @@ body {
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
+  align-content: center;
+  text-align: center;
+  position: relative; 
+  word-break:break-word;
 }
 
 #title::before {
   content: '';
   position: absolute;
-  top: 4.1vh;
-  left: 0;
+  top:0; 
+  left:0; 
   width: 100%;
   height: 60vh;
-  background-color: rgba(0, 0, 0, 0.5); /* Capa negra con 50% de opacidad */
+  background-color: var(--background-color-dark); /* Capa negra con 50% de opacidad */
+  opacity: 0.5;
+  z-index: 1;
 }
 
+#title h1, #title p {
+  position: relative;
+  z-index: 2; /* Asegura que el texto esté por encima de la capa */
+  color: var(--text-color-dark); 
+}
+
+
 #title > p {
-  z-index: 9999;
-  color: white ;
+  color: var(--text-color-dark);
   opacity: 100%;
 }
 
-#texto-title{
-  background-color: #444444;  
-  color: whitesmoke;
-  height: 40vh;
+#title h1{
+  color: var(--text-color-dark);
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 
+/* #texto-title{
+  background-color: #444444;  
+  color: whitesmoke;
+  height: 40vh;
+} */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Seccion de Quienes somos */
 #about-us{
   margin-top: 0%;
-
 }
 
 
 .slider {
   position: relative;
   width: 100%;
-  height: 50vh;
-  overflow: hidden;
-  background-color: #dddbd9; 
+  height: auto;
+  min-height: 25vh;
+  max-height: 100vh;
+  overflow: hidden; 
+  --heigth: 55vh; 
 }
 
 .slide {
   min-width: 100%;
-  height: 100%;
+  height: auto;
   display: flex;
-  
 }
 
 .slides{
@@ -363,7 +467,8 @@ body {
 .imagenes {
   position: relative;
   width: 33.33%;
-  height: 50vh;
+
+
 }
 
 .fondo {
@@ -378,7 +483,7 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 50vh;
+  height: 100%;
   object-fit: cover;
   transition: filter 0.3s ease; /* Transición suave para el filtro */
 }
@@ -391,32 +496,50 @@ body {
 .text-content {
   width: 66.66%;
   padding: 40px;
-  background-color: #262f35;
-  color:whitesmoke; 
+  background-color: var(--secondary-color);
+  color:var(--text-color-dark); 
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-height: 50vh;
+  transition: background-color 2s ease, color 0.5s ease;
 }
 
-/* Estilos de los títulos y textos */
 .text-content h2, .text-content h3, .text-content p {
-  margin: 10px 0;
+  margin: 1vh 5vw; /* Márgenes más flexibles en función del viewport */
   text-align: justify;
-  margin:1% 5%;
 }
 
 .text-content h2 {
-  font-size: 2vw;
+  font-size: 30px; /* Tamaño de fuente adaptado al ancho de la pantalla */
 }
 
 .text-content h3 {
-  font-size: 1.5vw;
+  font-size: 24px; 
 }
 
 .text-content p {
-  font-size: 1.2vh;
-  max-height: 25vw;
+  font-size: 16px;
+  line-height: 1.5; /* Mejor lectura con espaciado entre líneas */
+}
+
+
+@media (max-width: 450px) {
+  .text-content {
+    width: 100%; /* Ancho completo en móviles */
+    padding: 5vw;
+  }
+
+  .text-content h2 {
+    font-size: 5vw;
+  }
+
+  .text-content h3 {
+    font-size: 4vw;
+  }
+
+  .text-content p {
+    font-size: 3vw;
+  }
 }
 
 /* Estilos para los botones de navegación */
@@ -444,7 +567,7 @@ body {
 /* Estilos de la barra de progreso */
 .progress-bar {
   position: absolute;
-  bottom: 0px;
+  bottom:0; 
   left: 2.5%;
   width: 95%;
   height: 5px;
@@ -457,7 +580,7 @@ body {
 .progress {
   height: 100%;
   width: 0%;  
-  background-color: #095070;
+  background-color: var(--cobalt);
   transition: width 0.3s ease;
 }
 
@@ -466,7 +589,7 @@ body {
   position: absolute;
   height: 15px;
   width: 15px;
-  background-color: #095070;
+  background-color: var(--cobalt);
   border-radius: 50%;
   transform: translate(-50%, -40%);
   bottom: -10px;
@@ -480,8 +603,8 @@ body {
   bottom: 30px;
   left: 50%;
   transform: translateX(-40%);
-  background-color: #333;
-  color: #fff;
+  background-color: var(--terniary-color);
+  color: var(--text-color-dark);
   padding: 5px 10px;
   border-radius: 5px;
   visibility: hidden;
@@ -493,6 +616,18 @@ body {
   visibility: visible;
   opacity: 1;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -565,8 +700,8 @@ body {
 
 /*Grid con varios productos*/
 
-* {
-  /*IMportante para el no desplazamiento de los productos al girar*/
+.tienda *, .toggle-switch *{
+  /*IMportante para el no desplazamiento de los productos al girar y todas las animaciones con movimiento*/
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -607,7 +742,7 @@ body {
   position: absolute;
   right: 50px;
   background-color: #aa0000;
-  color: white;
+  color: var(--text-color-dark);
   padding: 2px 10px;
   font-size: 12px;
   font-weight: bold;
@@ -653,7 +788,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: red;
+  background-color: var(--err);
   z-index: -1;
   border-radius: 3px 3px 15px 15px;
   clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 50% 100%, 0% 70%);
@@ -668,6 +803,13 @@ body {
   opacity: 0;
   
 }
+
+
+
+
+
+
+
 
 
 .flip-card {
@@ -732,7 +874,7 @@ body {
 
 .flip-card-back {
   background-color: var(--secondary-color);
-  color: white;
+  color: var(--text-color-dark);
   transform: rotateY(180deg);
   /* Flip the back face */
   display: flex;
@@ -764,9 +906,6 @@ body {
 
 
 
-/* Estilo del slider */
-/* Estilo del slider */
-
 
 
 
@@ -793,6 +932,8 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 #contacto-content p {
@@ -804,7 +945,7 @@ body {
 .left-content{
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 50vw;
 }
 
 #mapa{
@@ -813,29 +954,45 @@ body {
   align-self: center;
   margin-top: 10px; 
   border: 0;
+  min-width: 400px;
+  max-width: 1000px;
 }
 
 /*Formulario*/
 .login-box {
-  width: 50vh;
+  width: 40vw;
+  min-width: 400px;
+  max-width: 450px;
   padding: 40px;
-  margin-left: 20px;
-  background: #262f35;
+  background: var(--secondary-color);
   box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
   border-radius: 10px;
   max-height: 500px;
+  color: var(--text-color-dark); 
+  transition: background-color 2s ease, color 0.5s ease;
 }
 
 .login-box p:first-child {
   margin: 0 0 30px;
   padding: 0;
-  color: #fff;
   text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: 1px;
 }
+
+
+@media (max-width:400px) {
+  .login-box, #mapa {
+    width: 90vw; /* Ocupa el 90% del ancho de la pantalla en móviles */
+    min-width: 300px; /* Remueve el valor mínimo de ancho para que se ajuste mejor */
+    max-width: 300px; /* Evita restricciones de ancho en móviles */
+    padding: 20px; /* Reduce el padding para mejorar el diseño en móviles */
+  }
+
+}
+
+
 
 .user-box {
   position: relative;
@@ -846,10 +1003,9 @@ body {
   width: 100%;
   padding: 10px 0;
   font-size: 16px;
-  color: #fff;
   margin-bottom: 30px;
   border: none;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid var(--background-color-light);
   outline: none;
   background: transparent;
   resize: none;
@@ -863,7 +1019,6 @@ body {
   left: 0;
   padding: 10px 0;
   font-size: 16px;
-  color: #fff;
   pointer-events: none;
   transition: .5s;
 }
@@ -875,29 +1030,31 @@ body {
 .user-box textarea:not(:placeholder-shown) + label {
   top: -20px;
   left: 0;
-  color: #fff;
   font-size: 12px;
 }
 
 /* Botón del formulario */
+#button {
+  font-family: "Bree Serif", serif;
+  font-size: 16px;
+  text-transform: uppercase;
+}
 .button-form {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
+  font-family: "Bree Serif", serif;
   font-weight: bold;
-  color: #fff;
-  font-size: 16px;
   text-decoration: none;
-  text-transform: uppercase;
   overflow: hidden;
   transition: .5s;
-  margin-top: 40px;
+  margin-top: 20px;
   letter-spacing: 3px;
 }
 
 .button-form:hover {
-  background: #fff;
-  color: #272727;
+  background: var(--background-color-light);
+  color: var(--text-color-dark);
   border-radius: 5px;
 }
 
@@ -911,7 +1068,7 @@ body {
   left: -100%;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #fff);
+  background: linear-gradient(90deg, transparent, var(--text-color-dark));
   animation: btn-anim1 12.5s linear infinite;
 }
 
@@ -930,7 +1087,7 @@ body {
   right: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg, transparent, #fff);
+  background: linear-gradient(180deg, transparent, var(--text-color-dark));
   animation: btn-anim2 12.5s linear infinite;
   animation-delay: 3.125s;
 }
@@ -950,7 +1107,7 @@ body {
   right: -100%;
   width: 100%;
   height: 2px;
-  background: linear-gradient(270deg, transparent, #fff);
+  background: linear-gradient(270deg, transparent, var(--text-color-dark));
   animation: btn-anim3 12.5s linear infinite;
   animation-delay: 6.25s;
 }
@@ -970,7 +1127,7 @@ body {
   left: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(360deg, transparent, #fff);
+  background: linear-gradient(360deg, transparent, var(--text-color-dark));
   animation: btn-anim4 12.5s linear infinite;
   animation-delay: 9.375s;
 }
@@ -988,32 +1145,37 @@ body {
 /* Estilo de los campos cuando son inválidos */
 #email:invalid,
 #mensaje:invalid {
-  border-bottom: 1px solid red; 
-  background: rgba(255, 0, 0, 0.1); 
+  border-bottom: 1px solid var(--err); 
+  background: var(--err-background); 
 }
 
 #email:invalid ~ label,
 #mensaje:invalid ~ label {
-  color: red; 
+  color: var(--err) 
 }
 
 .button-form input {
   background-color: transparent;
-  color: #f5f5f5;
+  color: var(--text-color-dark);
   border: none;
   font-size: 1.5rem;
 }
 
 .button-form input:hover {
-  color: #000; 
+  color: var(--text-color-light); 
+}
+
+textarea{
+  color: var(--text-color-dark); 
 }
 
 
-
 footer {
-  background-color: #333;
+  background-color: var(--terniary-color);
   margin-bottom: 0px;
   padding: 1% ;
+  color: var(--text-color-dark); 
+  transition: background-color 2s ease, color 0.5s ease;
 }
 footer p {
   text-align: center;

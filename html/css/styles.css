@@ -6,7 +6,7 @@
   --primary-color: #444444;
   --secondary-color: #262f35;
   --terniary-color: #333; 
-  --cobalt:#095070; 
+  --cobalt:#12729e; 
   --err: red; 
   --err-background:rgba(255, 0, 0, 0.1);
 }
@@ -116,96 +116,95 @@ section > h2::after {
 
 
 /* Estilos para el modo oscuro */
-body.dark-mode {
+body.light-mode {
   background-color: var(--background-color-light);
   color: var(--text-color-ligth);
   
 }
 
-body.dark-mode .menu-container,
-body.dark-mode .menu {
+body.light-mode .menu-container,
+body.light-mode .menu {
   background-color: var(--background-color-light);
 }
 
-body.dark-mode .progress{
+body.light-mode .progress{
   background-color: var(--cobalt);
 }
 
-body.dark-mode .prev,
-body.dark-mode .next {
+body.light-mode .prev,
+body.light-mode .next {
   background-color: var(--background-color-light);
   opacity: 0.5;
 }
 
-body.dark-mode .loader {
+body.light-mode .loader {
   border-color: var(--background-color-dark);
   border-bottom-color: transparent;
 }
 
-body.dark-mode .loaderDiv {
+body.light-mode .loaderDiv {
   background-color: var(--background-color-light);
 }
 
-body.dark-mode #menu-toggle{
+body.light-mode #menu-toggle{
   background-color: var(--background-color-light);
   color: var(--background-color-dark); 
 }
 
-body.dark-mode li{
+body.light-mode li{
   border-color: var(--background-color-dark);
   color: var(--text-color-light); 
 }
 
-body.dark-mode .menu a {
-  color: var(--text-color-light); 
+body.light-mode .menu a {
+  color: var(--text-color-light);
+  transition: background-color 2s ease, color 0.5s ease; 
 }
 
-body.dark-mode .menu a:hover {
-  background-color: var(--primary-color);
+body.light-mode .menu a:hover {
+  color:var(--background-color-light); 
+
 }
 
-body.dark-mode .menu li:hover > a {
-  background-color: var(--primary-color); /* Cambia el fondo del elemento actual */
+body.light-mode .menu li:hover > a {
+  background-color: var(--cobalt); /* Cambia el fondo del elemento actual */
   color:var(--text-color-dark);
   border-bottom-color: var(--text-color-dark);
 }
 
-/* Ilumina elementos adyacentes */
-body.dark-mode .menu li:hover + li > a,
-body.dark-mode .menu li:hover ~ li > a {
-  background-color: var(--primary-color); /* Cambia el fondo de los elementos hermanos */
-  color:var(--text-color-dark);
-}
-
-/* Para iluminar el anterior también */
-body.dark-mode .menu li:hover ~ li:first-child > a {
-  background-color: var(--primary-color); /* Cambia el fondo del primer hermano después del que se pasa el ratón */
-  color:var(--text-color-dark);
-}
-
-body.dark-mode .login-box{
+body.light-mode .menu li:hover ~ li > a {
   background-color: var(--primary-color);
 }
 
-body.dark-mode .text-content{
+/* Cambia el color del hermano adyacente inmediato después del que tiene hover */
+body.light-mode .menu li:hover + li > a {
+  background-color: var(--secondary-color);
+  color: var(--text-color-dark); 
+}
+
+body.light-mode .login-box{
   background-color: var(--primary-color);
 }
 
-body.dark-mode footer{
+body.light-mode .text-content{
+  background-color: var(--primary-color);
+}
+
+body.light-mode footer{
   background-color: var(--background-color-light);
   border-top: solid 1px var(--background-color-dark);
   color: var(--text-color-light); 
 }
 
-body.dark-mode .login-box{
+body.light-mode .login-box{
   box-shadow: 0px 0px 25px var(--background-color-dark);
 }
 
-body.dark-mode .section > h2 {
+body.light-mode .section > h2 {
   color: var(--text-color-light);
 }
 
-body.dark-mode section > h2::after {
+body.light-mode section > h2::after {
   background-color: var(--text-color-light); /* Color del borde */
 
 }
@@ -332,14 +331,14 @@ section {
 }
 
 /* Ilumina elementos adyacentes */
-.menu li:hover + li > a,
 .menu li:hover ~ li > a {
-  background-color: var(--primary-color); /* Cambia el fondo de los elementos hermanos */
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark); 
 }
 
-/* Para iluminar el anterior también */
-.menu li:hover ~ li:first-child > a {
-  background-color: var(--primary-color); /* Cambia el fondo del primer hermano después del que se pasa el ratón */
+/* Cambia el color del hermano adyacente inmediato después del que tiene hover */
+.menu li:hover + li > a {
+  background-color: var(--secondary-color);
 }
 
 /*.menu ul li:first-child a:hover {
@@ -487,6 +486,7 @@ section {
   height: 100%;
   object-fit: cover;
   transition: filter 0.3s ease; /* Transición suave para el filtro */
+  z-index: 10;
 }
 
 .resalto:hover {
@@ -564,6 +564,15 @@ section {
 .next {
   right: 20px;
 }
+
+
+
+
+
+
+
+
+
 
 /* Estilos de la barra de progreso */
 .progress-bar {
@@ -738,66 +747,44 @@ section {
   grid-row: span 4;
 }
 
-/*Modificar*/
 .new-label {
-  position: absolute;
+  position: absolute; 
   right: 50px;
-  background-color: #aa0000;
-  color: var(--text-color-dark);
+  background-color: #aa0000; 
+  color: var(--text-color-dark); 
   padding: 2px 10px;
   font-size: 12px;
-  font-weight: bold;
   z-index: 2;
-  /* Asegura que esté sobre la tarjeta */
-  transition: opacity 0.5s ease;
-  /* Transición suave para la opacidad */
-
-  /* Estilo de cinta */
-  height: 50px;
-  /* Altura del marcador */
-  align-content: center;
-  /* Centrar el texto verticalmente */
+  transition: opacity 0.5s ease; 
+  height: 50px; 
+  align-content: center; 
+  
+  /* Clip-path para crear una forma en pico en la parte inferior */
   clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 50% 100%, 0% 70%);
-  /* Puntas en pico */
-  border-radius: 3px 3px 15px 15px;
-  /* Bordes redondeados en la parte superior */
+
+  /* Bordes redondeados en la parte superior de la etiqueta */
+  border-radius: 3px 3px 15px 15px; 
 }
 
-/* Crear un pequeño efecto de sombra */
+/* Pseudo-elemento para crear un efecto de sombra detrás de la etiqueta */
 .new-label::before {
   content: '';
-  position: absolute;
-  top: 5px;
+  position: absolute; 
+  top: 5px; 
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: red;
-  z-index: -1;
+  background-color: red; 
+  z-index: -1; 
   border-radius: 3px 3px 15px 15px;
+  
+  /* Clip-path para que la sombra tenga la misma forma en pico que la etiqueta */
   clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 50% 100%, 0% 70%);
-  transform: translateY(3px);
-  /* Sombra sutil */
-  opacity: 0.5;
-  /* Transparencia para el efecto de sombra */
+  /* Desplaza la sombra 3px hacia abajo para crear un efecto de profundidad */
+  transform: translateY(3px); 
+  opacity: 0.5; 
 }
 
-/* Crear un pequeño efecto de sombra */
-.new-label::after {
-  content: '';
-  position: absolute;
-  top: 5px;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--err);
-  z-index: -1;
-  border-radius: 3px 3px 15px 15px;
-  clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 50% 100%, 0% 70%);
-  transform: translateY(3px);
-  /* Sombra sutil */
-  opacity: 0.5;
-  /* Transparencia para el efecto de sombra */
-}
 
 /* Ocultar la etiqueta "Nuevo" cuando la tarjeta se dé la vuelta */
 .flip-card:hover .new-label {
@@ -806,23 +793,14 @@ section {
 }
 
 
-
-
-
-
-
-
-
 .flip-card {
   background-color: transparent;
-  width: 100%;
+  width: 80%;
   height: 100%;
   cursor: pointer;
   position: relative;
-  /* Ensure the flip card stays in place */
   perspective: 1000px;
   aspect-ratio: 1;
-  /* Mantén la tarjeta cuadrada */
   border-radius: 28px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
   /* Sombra */
@@ -871,6 +849,11 @@ section {
   color: var(--text-color-dark); 
   font-size: 2vh;
   padding: 20px;
+  
+}
+
+.flip-card-front h2, .flip-card-front p{
+  text-shadow: 1px 1px 2px var(--text-color-light);
 }
 
 .flip-card-back {
@@ -1053,10 +1036,16 @@ section {
   letter-spacing: 3px;
 }
 
-.button-form:hover {
+.button-form:hover,
+.button-form:has(input:focus)  {
   background: var(--background-color-light);
-  color: var(--text-color-dark);
+  color: var(--background-color-dark);
   border-radius: 5px;
+}
+
+#button:focus{
+  color: var(--background-color-dark);
+  outline:none; 
 }
 
 .button-form span {
@@ -1144,15 +1133,17 @@ section {
 }
 
 /* Estilo de los campos cuando son inválidos */
-#email:invalid,
-#mensaje:invalid {
+#email:invalid{
   border-bottom: 1px solid var(--err); 
   background: var(--err-background); 
 }
 
-#email:invalid ~ label,
-#mensaje:invalid ~ label {
+#email:invalid ~ label {
   color: var(--err) 
+}
+
+#email {
+  color: var(--text-color-dark); 
 }
 
 .button-form input {
@@ -1162,9 +1153,7 @@ section {
   font-size: 1.5rem;
 }
 
-.button-form input:hover {
-  color: var(--text-color-light); 
-}
+
 
 textarea{
   color: var(--text-color-dark); 

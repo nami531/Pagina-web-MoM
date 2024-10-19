@@ -35,10 +35,10 @@
       <button id="menu-toggle">☰</button>
       <nav class="menu">
         <ul>
-          <li><a href="#">Inicio</a></li>
-          <li><a href="#">Quiénes somos</a></li>
-          <li><a href="#">Sobre Nosotros</a></li>
-          <li><a href="#">Contacto</a></li>
+          <li><a href="#texto-title">Inicio</a></li>
+          <li><a href="#tiendaSec">Tienda</a></li>
+          <li><a href="#about-us">Sobre Nosotros</a></li>
+          <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
 
@@ -54,20 +54,7 @@
 
   <!-- Cuerpo Principal -->
   <main>
-    <section class="heder-content" id="texto-title">
-      <!-- <h2>Gracias por visitarnos!</h2>
-      <p>
-        Bienvenido a nuestra plataforma, un espacio dedicado a ofrecerte información detallada sobre los servicios que
-        brindamos. En esta página encontrarás recursos útiles que te ayudarán a comprender mejor nuestras soluciones y
-        cómo podemos asistirte en tus proyectos.
-        Nos especializamos en brindar soporte técnico y consultoría, asegurando que cada uno de nuestros clientes reciba
-        la atención personalizada que merece.
-        Nuestro equipo está compuesto por expertos en diversas áreas, lo que nos permite ofrecer soluciones integrales
-        adaptadas a tus necesidades específicas.
-      </p> -->
-    </section>
-
-    <section class="tienda">
+    <section class="tienda" id="tiendaSec">
       <h2>Tienda</h2>
       <div class="grid-container">
 
@@ -364,20 +351,20 @@
       const tooltip = document.querySelector('.tooltip');
       const progressPercentage = (currentSlide / (totalSlides - 1)) * 100;
 
+
       // Actualiza el ancho de la barra de progreso
       progressBar.style.width = `${progressPercentage}%`;
       // Actualiza la posición del punto de progreso
       progressPoint.style.left = `${progressPercentage}%`;
 
-      // Actualiza el contenido del tooltip
-      tooltip.innerText = `${Math.round(progressPercentage)}%`;
+      // Actualiza el contenido del tooltip, de manera que si el slide es el número 2, pondrá 66%
+      tooltip.innerText =  (currentSlide === 1) ? '66%' : Math.round(progressPercentage) + '%'; 
     }
 
     function moveSlide(direction) {
       showSlide(currentSlide + direction);
     }
 
-    // Inicializa el slider al cargar la página
     showSlide(currentSlide);
 
 
@@ -393,21 +380,21 @@
   <script>
   
     // Verifica si hay un modo guardado en localStorage
-    if (localStorage.getItem('dark-mode') === 'enabled') {
+    if (localStorage.getItem('light-mode') === 'enabled') {
       checkbox.checked = true;
-      document.body.classList.add('dark-mode'); // Aplica la clase para modo oscuro
+      document.body.classList.add('light-mode'); // Aplica la clase para modo claro
     }
   
     // Agrega un evento de cambio al checkbox
     checkbox.addEventListener('change', () => {
       if (checkbox.checked) {
         // Modo oscuro activado manualmente
-        document.body.classList.add('dark-mode'); // Añade la clase
-        localStorage.setItem('dark-mode', 'enabled'); // Guarda la preferencia
+        document.body.classList.add('light-mode'); // Añade la clase
+        localStorage.setItem('light-mode', 'enabled'); // Guarda la preferencia
       } else {
         // Modo claro activado manualmente
-        document.body.classList.remove('dark-mode'); // Quita la clase
-        localStorage.setItem('dark-mode', 'disabled'); // Guarda la preferencia
+        document.body.classList.remove('light-mode'); // Quita la clase
+        localStorage.setItem('light-mode', 'disabled'); // Guarda la preferencia
       }
     });
   </script>

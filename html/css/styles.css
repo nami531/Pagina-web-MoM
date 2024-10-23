@@ -1047,6 +1047,9 @@ section {
   color: var(--background-color-dark);
   outline:none; 
 }
+#button:hover{
+  color: var(--background-color-dark);
+}
 
 .button-form span {
   position: absolute;

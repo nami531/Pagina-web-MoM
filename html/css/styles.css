@@ -11,7 +11,7 @@
   --err-background:rgba(255, 0, 0, 0.1);
 }
 
-/* Default to dark mode */
+/* Default en dark mode */
 body {
   margin: 0;
   padding: 0;
@@ -50,72 +50,20 @@ h3{
 section > h2::after {
   content: '';
   position: absolute;
-  left: 40.1%; /* Ajusta la posición del borde */
+  left: 40.1%; 
   bottom: 0;
   width: 20%; /* Hace el borde más ancho que el contenedor */
   height: 1px; /* Grosor del borde */
-  background-color: var(--text-color-dark); /* Color del borde */
+  background-color: var(--text-color-dark); 
   justify-self: center;
   text-align: center;
 
 }
 
-/* Dark mode specific */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: var(--background-color-dark);
-    color: var(--text-color-dark);
-  }
-  
-  .menu-container, .menu, #menu-toggle, .text-content {
-    background-color: var(--primary-color);
-  }
-
-  .progress, .prev, .next {
-    background-color: var(--secondary-color);
-  }
-
-  .loader {
-    border-color: var(--background-color-light);
-    
-  }
-
-  .loaderDiv{
-    background-color: var(--background-color-dark);
-  }
-}
-
-/* Light mode specific */
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: var(--background-color-ligth);
-    color: var(--text-color-light);
-  }
-
-  .menu-container, .menu, #menu-toggle{
-    background-color: var(--background-color-light);
-  }
-
-  .progress, .prev, .next {
-    background-color: var(--secondary-color);
-  }
-
-  .loader {
-    border-color: #000;
-    
-  }
-
-  .loaderDiv{
-    background-color: var(--background-color-dark);
-  }
-
-  .text-content{
-    background-color: var(--primary-color);
-  }
-}
 
 
-/* Estilos para el modo oscuro */
+
+/* Estilos para el modo claro */
 body.light-mode {
   background-color: var(--background-color-light);
   color: var(--text-color-ligth);
@@ -209,69 +157,141 @@ body.light-mode section > h2::after {
 
 }
 
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+  }
+  
+  .menu-container, .menu, #menu-toggle, .text-content {
+    background-color: var(--primary-color);
+  }
+
+  .progress, .prev, .next {
+    background-color: var(--secondary-color);
+  }
+
+  .loader {
+    border-color: var(--background-color-light);
+    
+  }
+
+  .loaderDiv{
+    background-color: var(--background-color-dark);
+  }
+}
+
+/* Light mode */
+ @media (prefers-color-scheme: light) {
+  body {
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
+  }
+
+  .menu-container, .menu, #menu-toggle{
+    background-color: var(--background-color-light);
+  }
+
+  .progress, .prev, .next {
+    background-color: var(--secondary-color);
+  }
+
+  .loader {
+    border-color: var(--background-color-dark);
+    
+  }
+
+  .loaderDiv{
+    background-color: var(--background-color-light);
+  }
+
+  .text-content{
+    background-color: var(--primary-color);
+  }
+
+  body section > h2::after {
+    background-color: var(--text-color-light); /* Color del borde */
+  
+  }
+} 
 
 
-
-
-
-
-
-/*Elementos básicos del css*/
 section {
-  margin-bottom: 100px;
+  margin-bottom: 50px;
+}
+
+.tienda{
+  margin-top: 50px;
 }
 
 
 
+/*Boton modo oscuro modo claro*/
 
-/*Botón con animación*/
-#id {
-  transform: perspective(1px) translateZ(0);
-  transition-duration: 0.5s;
+.toggle-switch {
+  position: fixed; /* Asegura que se quede en su lugar */
+  bottom: 20px;    
+  right: 20px;     
+  width: 60px;
+  height: 30px;
+  --light: #d8dbe0;
+  --dark: #28292c;
+  --link: rgb(27, 129, 112);
+  --link-hover: rgb(24, 94, 82);
+  z-index: 1000; 
 }
 
-#id:hover {
-  transform: scale(0.8);
-  transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+.switch-label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--dark);
+  border-radius: 25px;
+  cursor: pointer;
+  border: 3px solid var(--dark);
+  position: relative;
 }
 
-/*Loader*/
-.loader {
-  width: 48px;
-  height: 48px;
-  border: 5px solid;
-  border-bottom-color: transparent;
+.checkbox {
+  display: none;
+}
+
+.slider-switch {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+
+ /* Cambia el color de fondo cuando el checkbox está marcado  */
+ /* Se trata del elemento adyacente que tiene la clase switch-label */
+.checkbox:checked + .switch-label .slider-switch {
+  background-color: var(--light);
+}
+
+/*Es el círculo/luna del interruptor*/
+.slider-switch::before {
+  content: "";
+  position: absolute;
+  top: 2px; 
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
+  box-shadow: inset 12px -4px 0px 0px var(--light); /*Crea la luna, es una sombra con opacidad 100% hacia dentro*/
+  background-color: var(--dark);
+  transition: 0.3s;
 }
 
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.loaderDiv {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
+.checkbox:checked + .switch-label .slider-switch::before {
+  transform: translateX(32px);
+  background-color: var(--dark);
+  box-shadow: none;
 }
 
 
-
-/*Función para el slide in del menú*/
+/*Menú*/
 
 .menu-container {
   position: relative;
@@ -341,18 +361,6 @@ section {
   background-color: var(--secondary-color);
 }
 
-/*.menu ul li:first-child a:hover {
-  background-color: #4CAF50; /* Color de fondo del primer elemento en hover */
-  /*color: white; /* Color de texto en hover */
-  /*font-weight: bold; /* Negrita en hover */
-/*}
-
-/* Estilo del último elemento solo cuando se hace hover */
-/*.menu ul li:last-child a:hover {
-  background-color: #f44336; /* Color de fondo del último elemento en hover */
-  /*color: white; /* Color de texto en hover */
-  /*font-weight: bold; /* Negrita en hover */
-/*}*/
 
 
 
@@ -370,7 +378,7 @@ section {
 /*Header*/
 
 #title{
-  background-image: url("..\/media/img/fondo_inicio.jpg");
+  background-image: url("..\\/media/img/fondo_inicio.jpg");
   width: 100%;
   height: 60vh;
   background-position: center top;
@@ -389,7 +397,7 @@ section {
   left:0; 
   width: 100%;
   height: 60vh;
-  background-color: var(--background-color-dark); /* Capa negra con 50% de opacidad */
+  background-color: var(--background-color-dark); 
   opacity: 0.5;
   z-index: 1;
 }
@@ -409,16 +417,248 @@ section {
 #title h1{
   color: var(--text-color-dark);
   font-family: "Cinzel", serif;
-  font-optical-sizing: auto;
+  font-optical-sizing: auto; /*Atributo que traia por defecto la importación de google*/ 
   font-style: normal;
 }
 
 
-/* #texto-title{
-  background-color: #444444;  
-  color: whitesmoke;
-  height: 40vh;
-} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Grid con varios productos*/
+
+.tienda *, .toggle-switch *{
+  /*IMportante para el no desplazamiento de los productos al girar y todas las animaciones con movimiento*/
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-gap: 20px;
+  padding: 20px;
+  grid-auto-rows: minmax(75px, auto);
+  /* Ajustado para permitir mayor tamaño */
+  gap: 10px;
+  row-gap: 2%;
+  column-gap: 2%;
+  padding: 20px;
+  margin: 2% 12.5vw; 
+}
+
+
+
+.normal {
+  grid-column: span 2;
+}
+
+.featured {
+  grid-column: span 4;
+  grid-row: span 4;
+}
+
+/*Para que sea responsive*/
+@media (max-width: 600px) {
+  .grid-item.featured {
+    grid-column: span 3;
+    grid-row: span 3;
+  }
+}
+
+.new-label {
+  position: absolute; 
+  right: 50px;
+  background-color: #aa0000; 
+  color: var(--text-color-dark); 
+  padding: 2px 10px;
+  font-size: 12px;
+  z-index: 2;
+  transition: opacity 0.5s ease; 
+  height: 50px; 
+  align-content: center; 
+  
+  /* Clip-path para crear una forma en pico en la parte inferior */
+  clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 50% 100%, 0% 70%);
+
+  /* Bordes redondeados en la parte superior de la etiqueta */
+  border-radius: 3px 3px 15px 15px; 
+}
+
+/* Pseudo-elemento para crear un efecto de sombra detrás de la etiqueta */
+.new-label::before {
+  content: '';
+  position: absolute; 
+  top: 5px; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #D50000; 
+  z-index: -1; 
+  border-radius: 3px 3px 15px 15px;
+  
+  /* Clip-path para que la sombra tenga la misma forma en pico que la etiqueta */
+  clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 50% 100%, 0% 70%);
+  /* Desplaza la sombra 3px hacia abajo para crear un efecto de profundidad */
+  transform: translateY(3px); 
+}
+
+.grid-item {
+  perspective: 1000px;
+  /* Se necesita para el efecto de girar */
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+  perspective: 1000px;
+  aspect-ratio: 1;
+  border-radius: 28px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+  /* Sombra */
+  transition: box-shadow 0.4s ease-in-out;
+  /* Transición suave */
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  transform-origin: center;
+  /* Rotación desde el centro */
+  transform: translateZ(0);
+  /* Evita desplazamientos 3D no deseados */
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  /* Esconde la parte de atrás cuando no está visible */
+  border-radius: 28px;
+}
+
+.flip-card-front {
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color-dark); 
+  font-size: 2vh;
+  padding: 20px;
+  
+}
+
+.flip-card-front h2, .flip-card-front p{
+  text-shadow: 1px 1px 2px var(--text-color-light);
+}
+
+.flip-card-back {
+  background-color: var(--secondary-color);
+  color: var(--text-color-dark);
+  transform: rotateY(180deg);
+  /* Hay que girar también el texto de detrás ya que si no no se lee, y para que backface-visibility tenga efecto*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-size:1.5vh;
+}
+
+/* Ocultar la etiqueta "Nuevo" cuando la tarjeta se dé la vuelta */
+.flip-card:hover .new-label {
+  opacity: 0; 
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);  
+  /* Flip horizontal */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Botón con animación*/
+#id {
+  transform: perspective(1px) translateZ(0);
+  transition-duration: 0.5s;
+}
+
+#id:hover {
+  transform: scale(0.8);
+  transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+}
+
+/*Loader*/
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loaderDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+
+
+
 
 
 
@@ -642,241 +882,11 @@ section {
 
 
 
-/*Boton modo oscuro modo claro*/
-
-.toggle-switch {
-  position: fixed; /* Cambiado a fixed para asegurar que se quede en su lugar */
-  bottom: 20px;    /* Espaciado desde la parte inferior */
-  right: 20px;     /* Espaciado desde la parte derecha */
-  width: 60px;
-  height: 30px;
-  --light: #d8dbe0;
-  --dark: #28292c;
-  --link: rgb(27, 129, 112);
-  --link-hover: rgb(24, 94, 82);
-  z-index: 1000;  /* Asegura que esté por encima de otros elementos */
-}
-
-.switch-label {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-color: var(--dark);
-  border-radius: 25px;
-  cursor: pointer;
-  border: 3px solid var(--dark);
-  position: relative;
-}
-
-.checkbox {
-  display: none;
-}
-
-.slider-switch {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 25px;
-  transition: 0.3s;
-}
-
-.checkbox:checked + .switch-label .slider-switch {
-  background-color: var(--light);
-}
-
-.slider-switch::before {
-  content: "";
-  position: absolute;
-  top: 2px; 
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  box-shadow: inset 12px -4px 0px 0px var(--light);
-  background-color: var(--dark);
-  transition: 0.3s;
-}
-
-.checkbox:checked + .switch-label .slider-switch::before {
-  transform: translateX(32px);
-  background-color: var(--dark);
-  box-shadow: none;
-}
 
 
 
 
 
-
-
-/*Grid con varios productos*/
-
-.tienda *, .toggle-switch *{
-  /*IMportante para el no desplazamiento de los productos al girar y todas las animaciones con movimiento*/
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  grid-gap: 20px;
-  padding: 20px;
-  grid-auto-rows: minmax(75px, auto);
-  /* Ajustado para permitir mayor tamaño */
-  gap: 10px;
-  row-gap: 2%;
-  column-gap: 2%;
-  padding: 20px;
-  margin: 2% 5%; 
-}
-
-.grid-item {
-  perspective: 1000px;
-  /* Needed for 3D flip effect */
-}
-
-.normal {
-  grid-column: span 2;
-}
-
-.featured {
-  grid-column: span 4;
-  grid-row: span 4;
-}
-
-.new-label {
-  position: absolute; 
-  right: 50px;
-  background-color: #aa0000; 
-  color: var(--text-color-dark); 
-  padding: 2px 10px;
-  font-size: 12px;
-  z-index: 2;
-  transition: opacity 0.5s ease; 
-  height: 50px; 
-  align-content: center; 
-  
-  /* Clip-path para crear una forma en pico en la parte inferior */
-  clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 50% 100%, 0% 70%);
-
-  /* Bordes redondeados en la parte superior de la etiqueta */
-  border-radius: 3px 3px 15px 15px; 
-}
-
-/* Pseudo-elemento para crear un efecto de sombra detrás de la etiqueta */
-.new-label::before {
-  content: '';
-  position: absolute; 
-  top: 5px; 
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: red; 
-  z-index: -1; 
-  border-radius: 3px 3px 15px 15px;
-  
-  /* Clip-path para que la sombra tenga la misma forma en pico que la etiqueta */
-  clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 50% 100%, 0% 70%);
-  /* Desplaza la sombra 3px hacia abajo para crear un efecto de profundidad */
-  transform: translateY(3px); 
-  opacity: 0.5; 
-}
-
-
-/* Ocultar la etiqueta "Nuevo" cuando la tarjeta se dé la vuelta */
-.flip-card:hover .new-label {
-  opacity: 0;
-  
-}
-
-
-.flip-card {
-  background-color: transparent;
-  width: 80%;
-  height: 100%;
-  cursor: pointer;
-  position: relative;
-  perspective: 1000px;
-  aspect-ratio: 1;
-  border-radius: 28px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
-  /* Sombra */
-  transition: box-shadow 0.4s ease-in-out;
-  /* Transición suave */
-}
-
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-  transform-origin: center;
-  /* Ensure the rotation happens from the center */
-  transform: translateZ(0);
-  /* Evita desplazamientos 3D no deseados */
-}
-
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-  
-  /* Flip horizontally */
-}
-
-.flip-card-front,
-.flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  backface-visibility: hidden;
-  /* Hide the back face when not visible */
-  border-radius: 28px;
-}
-
-.flip-card-front {
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: var(--text-color-dark); 
-  font-size: 2vh;
-  padding: 20px;
-  
-}
-
-.flip-card-front h2, .flip-card-front p{
-  text-shadow: 1px 1px 2px var(--text-color-light);
-}
-
-.flip-card-back {
-  background-color: var(--secondary-color);
-  color: var(--text-color-dark);
-  transform: rotateY(180deg);
-  /* Flip the back face */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  font-size:1.5vh;
-}
-
-
-
-/*Para que sea responsive*/
-@media (max-width: 600px) {
-  .grid-item.featured {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-}
 
 
 

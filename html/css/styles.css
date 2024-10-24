@@ -265,8 +265,8 @@ section {
   transition: 0.3s;
 }
 
- /* Cambia el color de fondo cuando el checkbox está marcado  */
- /* Se trata del elemento adyacente que tiene la clase switch-label */
+/* Cambia el color de fondo cuando el checkbox está marcado  */
+/* Se trata del elemento adyacente que tiene la clase switch-label */
 .checkbox:checked + .switch-label .slider-switch {
   background-color: var(--light);
 }
@@ -469,13 +469,7 @@ section {
   grid-row: span 4;
 }
 
-/*Para que sea responsive*/
-@media (max-width: 600px) {
-  .grid-item.featured {
-    grid-column: span 3;
-    grid-row: span 3;
-  }
-}
+
 
 .new-label {
   position: absolute; 
@@ -544,7 +538,7 @@ section {
   transform-origin: center;
   /* Rotación desde el centro */
   transform: translateZ(0);
-  /* Evita desplazamientos 3D no deseados */
+  /* Evita desplazamientos 3D no deseado */
 }
 
 .flip-card-front,
@@ -598,6 +592,30 @@ section {
   /* Flip horizontal */
 }
 
+/*Para que sea responsive*/
+@media (max-width: 600px) {
+  .grid-item.featured {
+    grid-column: span 1;
+    grid-row: span 3;
+  }
+
+  .grid-item.normal{
+    grid-column: span 1;
+    grid-row : span 1;  
+  }
+
+  .flip-card-front{
+    font-size:5vw;
+  }
+
+  .flip-card-back{
+    font-size: 4vw;
+  }
+
+  #about-us{
+    margin-top: 50vh;
+  }
+}
 
 
 
@@ -979,7 +997,7 @@ section {
 @media (max-width:400px) {
   .login-box, #mapa {
     width: 90vw; /* Ocupa el 90% del ancho de la pantalla en móviles */
-    min-width: 300px; /* Remueve el valor mínimo de ancho para que se ajuste mejor */
+    min-width: 200px; /* Remueve el valor mínimo de ancho para que se ajuste mejor */
     max-width: 300px; /* Evita restricciones de ancho en móviles */
     padding: 20px; /* Reduce el padding para mejorar el diseño en móviles */
   }
@@ -1183,3 +1201,4 @@ footer {
 footer p {
   text-align: center;
 }
+

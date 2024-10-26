@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentMode = localStorage.getItem('light-mode') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
   setMode(currentMode);
 
-  // Agrega un evento de cambio al checkbox
+  
   checkbox.addEventListener('change', () => {
       const mode = checkbox.checked ? 'light' : 'dark';
       setMode(mode);
@@ -51,7 +51,7 @@ const menu = document.querySelector(".menu");
 const menuLinks = document.querySelectorAll(".menu a");
 const textHeader = document.getElementById("header-content");
 
-// Función para mostrar/ocultar el menú
+// Función para mostrar el menú
 toggleButton.addEventListener("click", () => {
   menu.classList.toggle("active");
   textHeader.style.marginTop = "75px";
@@ -72,15 +72,6 @@ document.addEventListener("click", (event) => {
   }
 });
 
-
-// Función para la transición del textarea
-const textarea = document.querySelector(".user-box textarea");
-
-textarea.addEventListener("input", function () {
-  this.style.height = "auto"; // Restablecer la altura
-  this.style.height = Math.min(this.scrollHeight, 200) + "px"; // Ajustar a la altura del contenido, limitando a 200px
-});
-
 //Funciones para el slider
 let currentSlide = 0;
 
@@ -88,16 +79,16 @@ function showSlide(index) {
   const slides = document.querySelector(".slides");
   const totalSlides = document.querySelectorAll(".slide").length;
 
-  // Asegúrate de que el índice esté dentro del rango
+  // Índice dentro del rango
   if (index >= totalSlides) {
-    currentSlide = 0;
+    currentSlide = 0; // Solo sucede cuando estamos en el último elemento y le damos al siguiente, esto lo que hace es llevarnos al primero
   } else if (index < 0) {
-    currentSlide = totalSlides - 1;
+    currentSlide = totalSlides - 1; //Solo sucede cuando estamos en el primer elemento y le damos al elemento anterior, lo que hace es llevarnos al último elemento 
   } else {
     currentSlide = index;
   }
 
-  // Desplaza el contenedor de las slides
+  // Desplaza el contenedor
   slides.style.transform = `translateX(-${currentSlide * 100}%)`;
 
   // Actualiza la barra de progreso
@@ -112,8 +103,7 @@ function showSlide(index) {
   progressPoint.style.left = `${progressPercentage}%`;
 
   // Actualiza el contenido del tooltip, de manera que si el slide es el número 2, pondrá 66%
-  tooltip.innerText =
-    currentSlide === 1 ? "66%" : Math.round(progressPercentage) + "%";
+  tooltip.innerText = currentSlide === 1 ? "66%" : Math.round(progressPercentage) + "%";
 }
 
 function moveSlide(direction) {

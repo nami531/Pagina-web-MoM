@@ -183,7 +183,7 @@ body.light-mode section > h2::after {
 }
 
 /* Light mode */
- @media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   body {
     background-color: var(--background-color-light);
     color: var(--text-color-light);
@@ -213,8 +213,8 @@ body.light-mode section > h2::after {
   body section > h2::after {
     background-color: var(--text-color-light); /* Color del borde */
   
-  }
-} 
+  /* }
+} */
 
 
 section {
@@ -474,7 +474,7 @@ section {
 .new-label {
   position: absolute; 
   right: 50px;
-  background-color: #aa0000; 
+  background-color: var(--cobalt);
   color: var(--text-color-dark); 
   padding: 2px 10px;
   font-size: 12px;
@@ -490,18 +490,19 @@ section {
   border-radius: 3px 3px 15px 15px; 
 }
 
-/* Pseudo-elemento para crear un efecto de sombra detrás de la etiqueta */
+/* Necesario para crear un efecto de sombra detrás de la etiqueta, este es el de delante*/
 .new-label::before {
   content: '';
   position: absolute; 
   top: 5px; 
   left: 0;
   width: 100%;
-  height: 100%;
-  background-color: #D50000; 
+  height: 100%; 
   z-index: -1; 
   border-radius: 3px 3px 15px 15px;
-  
+  background-image: url("../media/img/Tienda/destacado.jpg");
+  background-position: center;
+  background-size: cover;
   /* Clip-path para que la sombra tenga la misma forma en pico que la etiqueta */
   clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 50% 100%, 0% 70%);
   /* Desplaza la sombra 3px hacia abajo para crear un efecto de profundidad */
@@ -561,14 +562,11 @@ section {
   justify-content: center;
   align-items: center;
   color: var(--text-color-dark); 
-  font-size: 2vh;
+  font-size:1vw;
   padding: 20px;
-  
-}
-
-.flip-card-front h2, .flip-card-front p{
   text-shadow: 1px 1px 2px var(--text-color-light);
 }
+
 
 .flip-card-back {
   background-color: var(--secondary-color);
@@ -579,7 +577,7 @@ section {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  font-size:1.5vh;
+  font-size:12px;
 }
 
 /* Ocultar la etiqueta "Nuevo" cuando la tarjeta se dé la vuelta */
@@ -593,28 +591,25 @@ section {
 }
 
 /*Para que sea responsive*/
-@media (max-width: 600px) {
+@media (max-width: 750px) {
   .grid-item.featured {
-    grid-column: span 1;
-    grid-row: span 3;
+    grid-column: span 3;
+    grid-row: span 4;
   }
 
   .grid-item.normal{
     grid-column: span 1;
-    grid-row : span 1;  
+    grid-row : span 3;  
   }
 
   .flip-card-front{
-    font-size:5vw;
+    font-size:2.5vw;
   }
 
   .flip-card-back{
-    font-size: 4vw;
+    font-size: 1.75vw;
   }
 
-  #about-us{
-    margin-top: 50vh;
-  }
 }
 
 
@@ -699,7 +694,11 @@ section {
   margin-top: 0%;
 }
 
-
+@media(max-width:600px){
+  #about-us{
+    margin-top: 30%;
+  }
+}
 .slider {
   position: relative;
   width: 100%;
@@ -707,7 +706,6 @@ section {
   min-height: 25vh;
   max-height: 100vh;
   overflow: hidden; 
-  --heigth: 55vh; 
 }
 
 .slide {
@@ -725,8 +723,6 @@ section {
 .imagenes {
   position: relative;
   width: 33.33%;
-
-
 }
 
 .fondo {
@@ -743,7 +739,7 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: filter 0.3s ease; /* Transición suave para el filtro */
+  transition: filter 0.3s ease; 
   z-index: 10;
 }
 
@@ -764,12 +760,12 @@ section {
 }
 
 .text-content h2, .text-content h3, .text-content p {
-  margin: 1vh 5vw; /* Márgenes más flexibles en función del viewport */
+  margin: 1vh 5vw; 
   text-align: justify;
 }
 
 .text-content h2 {
-  font-size: 30px; /* Tamaño de fuente adaptado al ancho de la pantalla */
+  font-size: 30px; 
 }
 
 .text-content h3 {
@@ -778,13 +774,13 @@ section {
 
 .text-content p {
   font-size: 16px;
-  line-height: 1.5; /* Mejor lectura con espaciado entre líneas */
+  line-height: 1.5; 
 }
 
 
 @media (max-width: 450px) {
   .text-content {
-    width: 100%; /* Ancho completo en móviles */
+    width: 100%;
     padding: 5vw;
   }
 
@@ -799,7 +795,9 @@ section {
   .text-content p {
     font-size: 3vw;
   }
+
 }
+
 
 /* Estilos para los botones de navegación */
 .prev, .next {
@@ -811,7 +809,7 @@ section {
   font-size: 24px;
   padding: 10px;
   cursor: pointer;
-  z-index: 10; /* Asegura que los botones estén sobre las imágenes */
+  z-index: 10; 
   border-radius: 5px;
 }
 
@@ -826,12 +824,6 @@ section {
 
 
 
-
-
-
-
-
-
 /* Estilos de la barra de progreso */
 .progress-bar {
   position: absolute;
@@ -842,7 +834,7 @@ section {
   background-color: #ddd;
   display: flex;
   align-items: center;
-  z-index: 15; /* Asegura que la barra de progreso esté visible sobre las imágenes */
+  z-index: 15; 
 }
 
 .progress {
@@ -884,42 +876,6 @@ section {
   visibility: visible;
   opacity: 1;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1070,6 +1026,7 @@ section {
   color: var(--background-color-dark);
   border-radius: 5px;
 }
+
 
 #button:focus{
   color: var(--background-color-dark);

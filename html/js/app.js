@@ -5,9 +5,6 @@ window.onload = function () {
   }, 1000);
 };
 
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
   const checkbox = document.getElementById('checkbox'); 
 

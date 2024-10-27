@@ -485,7 +485,6 @@ section {
   
   /* Clip-path para crear una forma en pico en la parte inferior */
   clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 50% 100%, 0% 70%);
-
   /* Bordes redondeados en la parte superior de la etiqueta */
   border-radius: 3px 3px 15px 15px; 
 }
@@ -867,13 +866,11 @@ section {
   color: var(--text-color-dark);
   padding: 5px 10px;
   border-radius: 5px;
-  visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.2s;
 }
 
 .progress-point:hover .tooltip {
-  visibility: visible;
   opacity: 1;
 }
 
@@ -952,10 +949,10 @@ section {
 
 @media (max-width:400px) {
   .login-box, #mapa {
-    width: 90vw; /* Ocupa el 90% del ancho de la pantalla en móviles */
-    min-width: 200px; /* Remueve el valor mínimo de ancho para que se ajuste mejor */
-    max-width: 300px; /* Evita restricciones de ancho en móviles */
-    padding: 20px; /* Reduce el padding para mejorar el diseño en móviles */
+    width: 90vw; 
+    min-width: 200px; 
+    max-width: 300px; 
+    padding: 20px;
   }
 
 }
@@ -979,6 +976,10 @@ section {
   resize: none;
   line-height: 1.5;
   box-sizing: border-box;
+}
+
+.login-box .user-box textarea{
+  line-height: 1;
 }
 
 .login-box .user-box label {
